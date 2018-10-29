@@ -3,7 +3,15 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebase: {
+    apiKey: 'AIzaSyCpec_zRWlaKBJRvBF0LIXmGjzeC27YWts',
+    authDomain: 'ynov-yflix.firebaseapp.com',
+    databaseURL: 'https://ynov-yflix.firebaseio.com',
+    projectId: 'ynov-yflix',
+    storageBucket: 'ynov-yflix.appspot.com',
+    messagingSenderId: '56207161340'
+  }
 };
 
 /*
