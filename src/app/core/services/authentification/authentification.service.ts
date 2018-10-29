@@ -31,6 +31,7 @@ export class AuthentificationService {
 
   googleLogin() {
     const provider = new auth.GoogleAuthProvider();
+    console.log('provider', provider);
     return this.oAuthLogin(provider);
   }
 
