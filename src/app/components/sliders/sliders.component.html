@@ -1,3 +1,29 @@
 <div id="sliders">
 
+    <div id="playlist">
+
+        <p class="playlist-title">Playshit</p>
+
+        <div class="container" #tilesContainer>
+
+            <ul class="slider">
+                <li *ngFor="let tile of tiles" class="item">
+                    <img class="thumbnail" [src]="tile.img" alt="" width="235" style="object-fit: cover;">
+                    <div class="summary">
+                        <!-- <div class="title"> -->
+                        {{tile.title}}
+                        <!-- </div> -->
+                    </div>
+                </li>
+            </ul>
+
+            <div class="controls">
+                <button class="prev" (click)="scrollLeft()"><i class="fas fa-chevron-left"></i></button>
+                <button class="next" (click)="scrollRight()" style="float: right;"><i class="fas fa-chevron-right"></i></button>
+            </div>
+
+        </div>
+
+    </div>
+
 </div>
