@@ -1,0 +1,152 @@
+#highlight {
+    height: 800px;
+    /* background-color: red; */
+}
+
+.video-container {
+    height: 50vh;
+    position: relative;
+    overflow: hidden;
+}
+
+@media (min-width: 600px) {
+    .video-container {
+        height: 100%;
+    }
+}
+
+video {
+    -o-object-fit: cover;
+    object-fit: cover;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
+/*** A E S T H E T I C S ***/
+
+/***************************/
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: #333;
+    color: white;
+}
+
+.video-container:after {
+    content: '';
+    display: block;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+h1 {
+    text-transform: uppercase;
+    font-weight: 300;
+    margin: 0 0 1rem;
+    padding: 0;
+    line-height: 1;
+    font-family: Futura, Helvetica, sans-serif;
+    font-size: 2.5vw !important;
+    position: absolute;
+    left: 50px;
+    top: 30%;
+}
+
+@media (max-width: 400px) {
+    h1 {
+        font-size: 22px;
+    }
+}
+
+@media (min-width: 1200px) {
+    h1 {
+        font-size: 75px;
+    }
+}
+
+.highlight-logo {
+    position: absolute;
+    top: 40%;
+    left: 3%;
+    width: 150px;
+}
+
+.callout {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+
+.support {
+    position: fixed;
+    bottom: 60px;
+    right: 20px;
+    text-transform: uppercase;
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-align: right;
+    position: relative;
+    z-index: 10;
+}
+
+.support a {
+    color: white;
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.support a:before {
+    display: block;
+    position: absolute;
+    content: '';
+    bottom: -2px;
+    width: 0;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.3);
+    transition: .3s;
+}
+
+.support a:hover:before {
+    width: 100%;
+}
+
+/* mute icon */
+
+.mute-icon {
+    border-radius: 50%;
+    box-shadow: 0px 0px 2px #888;
+    padding: 0.5em 0.6em;
+    border: 2px white solid;
+    height: 35px;
+    width: 35px;
+    line-height: 17px;
+    color: white;
+    position: relative;
+    bottom: 60px;
+    left: 97%;
+    z-index: 10;
+}
+
+.mute-icon:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 20px #f5b9b9;
+}

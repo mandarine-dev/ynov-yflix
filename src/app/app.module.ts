@@ -19,7 +19,7 @@ import { environment } from '@env/environment';
     RoutingModule,
     CoreModule,
     ComponentsModule,
-    AngularFireModule.initializeApp(environment.firebase)
+    AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [],
   bootstrap: [AppComponent]

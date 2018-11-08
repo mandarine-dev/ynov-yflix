@@ -7,3 +7,12 @@
   <div class="layout-3">
   </div>
 </div>
+
+<div id="profiles">
+
+  <div class="profile" *ngFor="let profile of profiles" (click)="openProfile(profile)">
+    <img class="thumb" [src]="profile.img">
+    <p class="name">{{ profile.name }} </p>
+  </div>
+
+</div>

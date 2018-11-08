@@ -12,7 +12,7 @@ import { User } from '@core/models/user';
 @Injectable({ providedIn: 'root' })
 export class AuthentificationService {
 
-  user: Observable<User>;
+  public user: Observable<User>;
 
   constructor(
     private afAuth: AngularFireAuth,

@@ -9,6 +9,8 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AuthentificationGuard } from './services/authentification/authentification.guard';
 import { AuthentificationService } from './services/authentification/authentification.service';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   imports: [
@@ -20,9 +22,17 @@ import { AuthentificationService } from './services/authentification/authentific
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
     AngularFireStorageModule, // imports firebase/storage only needed for storage features
   ],
-  declarations: [],
+  declarations: [
+    HeaderComponent,
+    FooterComponent
+  ],
   providers: [
     AuthentificationService,
-    AuthentificationGuard]
+    AuthentificationGuard,
+  ],
+  exports: [
+    HeaderComponent,
+    FooterComponent
+  ]
 })
 export class CoreModule { }
