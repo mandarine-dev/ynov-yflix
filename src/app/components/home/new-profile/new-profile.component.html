@@ -1,0 +1,18 @@
+<div class="align">
+  <div class="card-form">
+    <form class="signup">
+      <div class="form-title">Ajouter un nouveau profil</div>
+      <div class="form-body">
+        <div class="row">
+          <input type="text" placeholder="Nom" name="username" [(ngModel)]="profile.zgeg">
+          <input type="text" placeholder="Nom" name="username" [(ngModel)]="profile.photoUrl">
+        </div>
+      </div>
+      <div class="rule"></div>
+      <div class="form-footer">
+        <a>Annuler</a>
+        <a (click)="createProfile()">Valider</a>
+      </div>
+    </form>
+  </div>
+</div>

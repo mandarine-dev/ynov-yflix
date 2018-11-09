@@ -26,6 +26,11 @@ export class HomeProfileComponent implements OnInit {
     this.router.navigate([url]);
   }
 
+  openAddProfile() {
+    const url = 'home/new-profile';
+    this.router.navigate([url]);
+  }
+
   getProfiles() {
     this.homeSvc.getProfiles(this.authSvc.user.uid).subscribe(result => {
       console.log('users ', result);
