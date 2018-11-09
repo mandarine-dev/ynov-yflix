@@ -1,3 +1,32 @@
-#home-profile {
-    
+#profiles {
+    position: absolute;
+    width: 40vw;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate3d(-50%, -50%, 0);
+    transform: translate3d(-50%, -50%, 0);
+    transition: -webkit-transform .5s ease-in;
+    transition: transform .5s ease-in;
+    transition: transform .5s ease-in, -webkit-transform .5s ease-in;
+    transition-delay: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.profile {
+    padding: 10px;
+}
+
+.profile:hover {
+    cursor: pointer;
+}
+
+.thumb {
+    object-fit: cover;
+    width: 120px;
+    height: 120px;
+}
+
+.name {
+    text-align: center;
 }

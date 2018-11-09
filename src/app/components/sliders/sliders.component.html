@@ -18,8 +18,12 @@
             </ul>
 
             <div class="controls">
-                <button class="prev" (click)="scrollLeft()"><i class="fas fa-chevron-left"></i></button>
-                <button class="next" (click)="scrollRight()" style="float: right;"><i class="fas fa-chevron-right"></i></button>
+                <button class="prev" (click)="scrollLeft()" style="position: absolute; left: 0px;">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="next" (click)="scrollRight()" style="position: absolute; right: 0px;">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
             </div>
 
         </div>

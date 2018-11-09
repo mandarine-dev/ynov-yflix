@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+import { Profile } from '@app/core/models/profile';
+import { AuthentificationService } from '@app/core/services/authentification/authentification.service';
+import { HomeService } from '@components/home/home.service';
 
 @Component({
   selector: 'app-home-profile',
@@ -9,15 +12,25 @@ import { ActivatedRoute } from '@angular/router';
 
 export class HomeProfileComponent implements OnInit {
 
-  profileId: number;
+  profiles: Profile[];
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private router: Router, private homeSvc: HomeService, private authSvc: AuthentificationService) { }
 
   ngOnInit() {
-    this.profileId = this.route.snapshot.params['id'];
-    if (this.profileId) {
-      console.log('Welcome !', this.profileId);
-    }
+    this.getProfiles();
+  }
+
+  openProfile(profile) {
+    console.log('openProfile', profile);
+    const url = 'home/' + profile.id;
+    this.router.navigate([url]);
+  }
+
+  getProfiles() {
+    this.homeSvc.getProfiles(this.authSvc.user.uid).subscribe(result => {
+      console.log('users ', result);
+      this.profiles = result;
+    });
   }
 
 }

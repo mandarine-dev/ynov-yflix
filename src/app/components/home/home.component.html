@@ -1,18 +1,7 @@
-<div class="netflix">
-  <div class="layout-1">
-    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/329679/netflix-logo.png" />
-  </div>
-  <div class="layout-2">
-  </div>
-  <div class="layout-3">
-  </div>
-</div>
+<app-header></app-header>
 
-<div id="profiles">
+<app-highlight></app-highlight>
 
-  <div class="profile" *ngFor="let profile of profiles" (click)="openProfile(profile)">
-    <img class="thumb" [src]="profile.img">
-    <p class="name">{{ profile.name }} </p>
-  </div>
+<app-sliders></app-sliders>
 
-</div>
+<app-footer></app-footer>

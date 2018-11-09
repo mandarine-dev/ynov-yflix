@@ -1,7 +1,13 @@
-<app-header></app-header>
+<div id="profiles">
 
-<app-highlight></app-highlight>
+    <div class="profile" *ngFor="let profile of profiles" (click)="openProfile(profile)">
+        <img class="thumb" [src]="profile.photoUrl">
+        <p class="name">{{ profile.username }} </p>
+    </div>
 
-<app-sliders></app-sliders>
+    <div class="profile" (click)="openProfile(profile)">
+        <img class="thumb" src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Plus_symbol.svg">
+        <p class="name">Ajouter un profil </p>
+    </div>
 
-<app-footer></app-footer>
+</div>

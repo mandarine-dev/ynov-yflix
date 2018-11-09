@@ -64,8 +64,7 @@
 
 .controls {
   flex: 1 1 100%;
-  position: absolute;
-  width: 100%;
+  display: contents;
 }
 
 .controls button {
@@ -79,9 +78,6 @@
   -webkit-appearance: none;
   cursor: pointer;
   height: 135px;
-}
-
-button {
   outline: 0;
 }
 

@@ -15,7 +15,7 @@
     }
 }
 
-video {
+iframe {
     -o-object-fit: cover;
     object-fit: cover;
     position: absolute;
