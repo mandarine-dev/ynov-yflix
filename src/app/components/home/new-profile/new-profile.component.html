@@ -4,8 +4,10 @@
       <div class="form-title">Ajouter un nouveau profil</div>
       <div class="form-body">
         <div class="row">
-          <input type="text" placeholder="Nom" name="username" [(ngModel)]="profile.zgeg">
-          <input type="text" placeholder="Nom" name="username" [(ngModel)]="profile.photoUrl">
+          <input type="text" placeholder="Nom" name="username" [(ngModel)]="profile.username">
+          <input type="file" (change)="uploadFile($event)">
+          <div>{{ uploadPercent | async }}</div>
+          <a [href]="downloadURL | async">{{ downloadURL | async }}</a>
         </div>
       </div>
       <div class="rule"></div>
