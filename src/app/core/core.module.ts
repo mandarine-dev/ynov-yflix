@@ -11,6 +11,7 @@ import { AuthentificationGuard } from './services/authentification/authentificat
 import { AuthentificationService } from './services/authentification/authentification.service';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { BarComponent } from './bar/bar.component';
 
 @NgModule({
   imports: [
@@ -20,11 +21,12 @@ import { FooterComponent } from './footer/footer.component';
     // ? firebase
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
-    AngularFireStorageModule, // imports firebase/storage only needed for storage features
+    AngularFireStorageModule, // imports firebase/storage only needed for storage features,
   ],
   declarations: [
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    BarComponent
   ],
   providers: [
     AuthentificationService,
@@ -32,7 +34,8 @@ import { FooterComponent } from './footer/footer.component';
   ],
   exports: [
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    BarComponent
   ]
 })
 export class CoreModule { }

@@ -4,17 +4,19 @@
       <div class="form-title">Ajouter un nouveau profil</div>
       <div class="form-body">
         <div class="row">
+          <img class="profile-image" [src]="downloadURL | async" (click)="myfile.click()" />
+          <input #myfile type="file" style="display: none;" (change)="uploadFile($event)" />
           <input type="text" placeholder="Nom" name="username" [(ngModel)]="profile.username">
-          <input type="file" (change)="uploadFile($event)">
-          <div>{{ uploadPercent | async }}</div>
-          <a [href]="downloadURL | async">{{ downloadURL | async }}</a>
         </div>
       </div>
+
       <div class="rule"></div>
       <div class="form-footer">
-        <a>Annuler</a>
-        <a (click)="createProfile()">Valider</a>
+        <a (click)="cancel()">Annuler</a>
+        <a (click)="validate()">Valider</a>
       </div>
     </form>
   </div>
 </div>
+
+<app-bar [value]="uploadPercent | async"></app-bar>

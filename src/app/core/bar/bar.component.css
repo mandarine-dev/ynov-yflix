@@ -1,0 +1,7 @@
+.bar {
+    background-color: #2be27b;
+    height: 8px;
+    position: absolute;
+    top: 0px;
+    transition: width 1s ease-in-out;
+}

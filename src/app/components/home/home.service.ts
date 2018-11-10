@@ -15,13 +15,10 @@ export class HomeService {
     }
 
     createProfile(profile: Profile) {
-        const userRef = this.afs.collection('users').doc(this.authSvc.user.uid).collection('profiles');
-        return userRef.add(profile);
-    }
-
-    uploadImage(file, path) {
-        const ref = this.storage.ref(path);
-        const task = ref.put(file);
+        const userRef = this.afs.firestore.collection('users').doc(this.authSvc.user.uid).collection('profiles').doc();
+        // set id after empty doc created
+        profile.id = userRef.id;
+        return userRef.set(profile);
     }
 
 }

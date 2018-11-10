@@ -18,7 +18,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     SharedModule,
     CoreModule,
     ProgramsRoutingModule,
-    FormsModule
+    FormsModule,
   ],
   declarations: [
     HomeComponent,
