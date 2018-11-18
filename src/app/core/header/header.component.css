@@ -56,3 +56,9 @@
 .dropdown:hover .dropbtn {
     background-color: #3e8e41;
 }
+
+.add-video {
+    position: absolute;
+    right: 100px;
+    top: 10px;
+}

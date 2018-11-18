@@ -13,6 +13,8 @@ import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { AuthentificationGuard } from './services/authentification/authentification.guard';
 import { AuthentificationService } from './services/authentification/authentification.service';
+import { HeaderModalComponent } from './header/header-modal/header-modal.component';
+import { MatDialog } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -29,17 +31,22 @@ import { AuthentificationService } from './services/authentification/authentific
   declarations: [
     HeaderComponent,
     FooterComponent,
-    BarComponent
+    BarComponent,
+    HeaderModalComponent
   ],
   providers: [
     AuthentificationService,
-    AuthentificationGuard,
+    AuthentificationGuard
   ],
   exports: [
     HeaderComponent,
     FooterComponent,
     BarComponent,
-    MaterialModule
+    MaterialModule,
+    HeaderModalComponent
+  ],
+  entryComponents: [
+    HeaderModalComponent
   ]
 })
 export class CoreModule { }
