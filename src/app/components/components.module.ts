@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { ProgramsRoutingModule } from './home/home.routing';
 import { HomeNewProfileComponent } from './home/new-profile/new-profile.component';
 import { LoginComponent } from './login/login.component';
+import { ModalComponent } from './sliders/modal/modal.component';
 import { SlidersComponent } from './sliders/sliders.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 
@@ -27,7 +28,11 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     LoginComponent,
     UserProfileComponent,
     HighlightComponent,
-    SlidersComponent
+    SlidersComponent,
+    ModalComponent
+  ],
+  exports: [
+    ModalComponent
   ]
 })
 export class ComponentsModule { }
