@@ -51,7 +51,9 @@ export class AuthentificationService {
       uid: user.uid,
       email: user.email,
       displayName: user.displayName,
-      photoURL: user.photoURL
+      photoURL: user.photoURL,
+      subtitleEnabled: false,
+      culture: 'fr-FR'
     };
 
     return userRef.set(data, { merge: true });
@@ -74,6 +76,16 @@ export class AuthentificationService {
 
   userObservable() {
     return this.userSubject.asObservable();
+  }
+
+  updateSubtitle(user, subtitleState: boolean) {
+    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
+    userRef.update({'subtitleEnabled': subtitleState});
+  }
+
+  updateCulture(user, cultureValue: string) {
+    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
+    userRef.update({'culture': cultureValue});
   }
 
 }

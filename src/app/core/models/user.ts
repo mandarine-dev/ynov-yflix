@@ -7,4 +7,6 @@ export interface User {
     displayName?: string;
     favoriteColor?: string;
     profiles?: Profile[];
+    subtitleEnabled?: boolean;
+    culture?: string;
 }

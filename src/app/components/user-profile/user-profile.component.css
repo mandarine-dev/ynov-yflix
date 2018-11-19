@@ -1,0 +1,307 @@
+/** Inspired by: http://graphicburger.com/flat-design-ui-components/ **/
+/** Line-chart and donut-chart made by @kseso https://codepen.io/Kseso/pen/phiyL **/
+
+
+/************************************ FONTS ************************************/
+@import url(https://fonts.googleapis.com/css?family=Ubuntu:400,700);
+@import url(http://weloveiconfonts.com/api/?family=entypo|fontawesome|zocial);
+/* entypo */
+[class*="entypo-"]:before {
+  font-family: 'entypo', sans-serif;
+}
+/* fontawesome */
+[class*="fontawesome-"]:before {
+  font-family: 'FontAwesome', sans-serif;
+}
+/* zocial */
+[class*="zocial-"]:before {
+  font-family: 'zocial', sans-serif;
+}
+@font-face {
+	font-family: 'icomoon';
+	src:url('https://jlalovi-cv.herokuapp.com/font/icomoon.eot');
+	src:url('https://jlalovi-cv.herokuapp.com/font/icomoon.eot?#iefix') format('embedded-opentype'),
+		url('https://jlalovi-cv.herokuapp.com/font/icomoon.ttf') format('truetype'),
+		url('https://jlalovi-cv.herokuapp.com/font/icomoon.woff') format('woff'),
+		url('https://jlalovi-cv.herokuapp.com/font/icomoon.svg#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+.icon-cloudy:before {
+	content: "\e60f";
+}
+.icon-sun:before {
+	content: "\e610";
+}
+.icon-cloudy2:before {
+	content: "\e611";
+}
+/************************************* END FONTS *************************************/
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;  
+}
+
+body {
+	background: #1f253d;
+}
+
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding-left: 0;
+}
+
+h1 {
+	font-size: 23px;
+}
+
+h2 {
+	font-size: 17px;
+}
+
+p {
+	font-size: 15px;
+}
+
+a {
+	text-decoration: none;
+	font-size: 15px;
+}
+	a:hover {
+		text-decoration: underline;
+	}
+
+h1, h2, p, a, span{
+	color: #fff;
+}
+	.scnd-font-color {
+		color: #9099b7;
+	}
+
+.input-container {
+	position: relative;
+}
+	input[type=text]{
+		width: 260px;
+		height: 50px;
+		margin-left: 20px;
+		margin-bottom: 20px;
+		padding-left: 45px;
+		background: #50597b;
+		color: #fff;
+		border: solid 1px #1f253d;
+		border-radius: 5px;		
+	}
+		input[type=text]::-webkit-input-placeholder { /* WebKit browsers */
+	   		color: #fff;	   		
+	   	}
+		input[type=text]:-moz-input-placeholder { /* Mozilla Firefox 4 to 18 */
+	   		color: #fff;	   
+	   	}
+		input[type=text]::-moz-input-placeholder { /* Mozilla Firefox 19+ */
+	   		color: #fff;
+	   	}
+		input[type=text]:-ms-input-placeholder { /* Internet Explorer 10+ */
+	   		color: #fff;	   	
+	   	}
+	   	input[type=text]:focus {
+	   		outline: none; /* removes the default orange border when focus */
+	   		border: 1px solid #11a8ab;
+	   	}
+	.input-icon {
+		font-size: 22px;
+		position: absolute;
+		left: 31px;
+		top: 10px;
+	}
+		.input-icon.password-icon {
+			left: 35px;
+		}
+
+.horizontal-list {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+	.horizontal-list li {
+		float: left;
+	}
+
+.clear {
+	clear: both;
+}
+
+.icon {
+	font-size: 25px;
+}
+
+.profile-picture {
+	border-radius: 100%;
+	overflow: hidden;
+	-webkit-box-sizing: content-box;
+  	-moz-box-sizing: content-box;
+  	box-sizing: content-box;	
+}
+	.big-profile-picture {
+		margin: 0 auto;		
+		border: 5px solid #ECF0F1;
+		width: 150px;
+		height: 150px;
+	}
+	.big-profile-picture img :after:hover {		
+		content: "\25AE";  /* this is your text. You can also use UTF-8 character codes as I do here */
+    font-family: FontAwesome;
+    left:-5px;
+    position:absolute;
+	top:0;
+	color: red;
+	}	
+	.small-profile-picture {
+		border: 2px solid #ECF0F1;
+		width: 40px;
+		height: 40px;
+	}
+
+
+/** MAIN CONTAINER **/
+
+.main-container {
+	font-family: 'Ubuntu', sans-serif;
+	width: 950px;
+	height: 1725px;
+	margin: 6em auto;
+}		
+		.profile-menu {
+			float: right;
+			height: 80px;
+			padding-right: 20px;
+		}
+			.profile-menu p {
+				font-size: 17px;
+				display: inline-block;
+				line-height: 76px;
+				margin: 0;
+				padding-right: 10px;
+			}
+				.profile-menu a {
+					padding-left: 5px;
+				}
+					.profile-menu a:hover {
+						text-decoration: none;
+					}
+			.small-profile-picture {
+				display: inline-block;
+				vertical-align: middle;				
+			}
+    /** CONTAINERS **/
+    .main-container{
+        width: 100%;
+        background: #C0392B;
+    }
+	.container {
+		float: left;
+		width: 100%;
+	}
+		.block {
+			margin-bottom: 25px;
+			background: #34495E;
+		}
+		/************************************************** MIDDLE CONTAINER **********************************/
+		.middle-container {
+            width: 90%;
+            height: 100%;
+			margin: auto;			
+		}
+			.profile {
+				height: 100%;
+			}
+				.add-button .icon {
+					float: right;
+					line-height: 18px;
+					width: 23px;					
+					border: 2px solid;
+					border-radius: 100%;
+					font-size: 18px;
+					text-align: center;
+					margin: 10px;					
+				}
+					.add-button .icon:hover {
+						color: #e64c65;
+						border-color: #e64c65;
+					}
+				.user-name {
+					margin: 25px 0 16px;
+					text-align: center;
+				}
+				.profile-description {
+					width: 210px;
+					margin: 0 auto;
+					text-align: center;
+				}
+				.profile-options {
+                    padding-top: 23px;
+                    width: 300px;
+                    margin: auto;
+				}
+					.profile-options li {
+						border-left: 1px solid #1f253d;
+					}
+						.profile-options p {
+							margin: 0;
+						}
+						.profile-options a {
+							display: block;					
+							width: 99px;
+							height: 60px;
+							line-height: 60px;
+							text-align: center;
+							-webkit-transition: background .3s;
+							transition: background .3s;				
+						}
+							.profile-options a:hover {
+								text-decoration: none;
+								background: #50597b;
+								cursor: pointer;
+							}
+							.culture-selected {
+								text-decoration: none;
+								background: #C0392B;								
+							}
+							.profile-options a:hover.comments .icon {
+								color: #fcb150;
+							}
+							.profile-options a:hover.views .icon {
+								color: #11a8ab;
+							}
+							.profile-options a:hover.likes .icon {
+								color: #e64c65;
+							}
+							.profile-options .icon {
+								padding-right: 10px;
+							}
+							.profile-options .comments {
+								border-top: 4px solid #fcb150;
+							}
+							.profile-options .views {
+								border-top: 4px solid #11a8ab;
+							}
+							.profile-options .likes {
+								border-top: 4px solid #e64c65;
+							}

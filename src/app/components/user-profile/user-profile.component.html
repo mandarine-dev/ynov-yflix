@@ -17,11 +17,39 @@
 
 <!-- User logged in -->
 <ng-template #authenticated>
-  <div *ngIf="auth.$user | async as $user">
-    <h3>Howdy, {{ $user.displayName }}</h3>
-    <img [src]="$user.photoURL">
-    <p>UID: {{ $user.uid }}</p>
-    <p>Favorite Color: {{ $user?.favoriteColor }} </p>
-    <button (click)="auth.signOut()">Logout</button>
+  <div class="main-container">
+    <div class="middle-container " *ngIf="auth.$user | async as $user">
+      <div class="profile block">
+        <!-- PROFILE (MIDDLE-CONTAINER) -->
+        <a class="add-button" href="#28"><span class="icon entypo-plus scnd-font-color"></span></a>
+        <div class="profile-picture big-profile-picture clear">
+          <img width="150px" alt="Anne Hathaway picture" [src]="$user.photoURL">          
+        </div> 
+        <h1 class="user-name">{{$user.displayName}}</h1>
+        <div class="profile-description">
+          <p class="scnd-font-color">{{$user.email}}</p>
+        </div>
+        <div class="profile-description">
+          <p>Activer les sous-titres: <span><i [ngClass]="$user.subtitleEnabled ? 'fas fa-toggle-on' : 'fas fa-toggle-off'" (click)="auth.updateSubtitle($user,!$user.subtitleEnabled)"></i></span></p>
+        </div>
+        <ul class="profile-options horizontal-list">
+          <li>
+            <a class="comments" [ngClass]="{'culture-selected': $user.culture == 'fr-FR' }" (click)="auth.updateCulture($user,'fr-FR')">
+              <img style="width: 50px; margin-top: 10px;" src="../../../assets/img/french-flag.png">
+            </a>
+          </li>
+          <li>
+            <a class="views" [ngClass]="{'culture-selected': $user.culture == 'en-EN' }" (click)="auth.updateCulture($user,'en-EN')">
+              <img style="width: 50px; margin-top: 10px;" src="../../../assets/img/english-flag.png">
+            </a>
+          </li>
+          <li>
+            <a class="likes" [ngClass]="{'culture-selected': $user.culture == 'es-ES' }" (click)="auth.updateCulture($user,'es-ES')">
+              <img style="width: 50px; margin-top: 10px;" src="../../../assets/img/spanish-flag.png">
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </ng-template>
