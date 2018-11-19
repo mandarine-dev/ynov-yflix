@@ -1,0 +1,34 @@
+<h1 mat-dialog-title>{{'ADD_NEW_VIDEO' | translate}}</h1>
+<div mat-dialog-content>
+
+  <form class="form" [formGroup]="videoForm">
+    <mat-form-field appearance="outline">
+      <mat-label>{{'VIDEO_URL' | translate}}</mat-label>
+      <input matInput placeholder="https://www.youtube.com/watch?v=e-z8ktCKm_M" [errorStateMatcher]="matcher"
+        formControlName="url">
+      <mat-icon matSuffix>code</mat-icon>
+      <mat-error *ngIf="f.url.errors">
+        {{ 'VIDEO_TITLE_ERRORS' | translate }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>{{'VIDEO_TITLE' | translate}}</mat-label>
+      <input matInput placeholder="Placeholder">
+      <mat-icon matSuffix>subtitles</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>{{'VIDEO_DESCRIPTION' | translate}}</mat-label>
+      <textarea matInput placeholder="Leave a comment"></textarea>
+    </mat-form-field>
+
+  </form>
+
+
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="'salut'" cdkFocusInitial>Ok</button>
+</div>

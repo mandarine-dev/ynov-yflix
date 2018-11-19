@@ -10,7 +10,7 @@
             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#lock"></use>
           </svg><span class="hidden">Mot de passe</span></label><input id="login__password" type="password" name="password"
           class="form__input" placeholder="Mot de passe" required></div>
-      <div class="field"><input class="signin-btn" type="submit" value="Se connecter"></div>
+      <div class="field"><input class="signin-btn" type="submit" value="Se connecter" (click)="connectEmail()"></div>
       <div class="field" (click)="auth.googleLogin()"><input class="google-btn text-center" value="Se connecter avec Google"></div>
     </form>
     <p class="text-center">Pas de compte ? <a href="#">En créer un !</a><svg class="icon">

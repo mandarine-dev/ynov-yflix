@@ -1,3 +1,4 @@
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 // firebase
 import { AngularFireModule } from '@angular/fire';
@@ -7,6 +8,13 @@ import { RoutingModule } from '@app/routing.module';
 import { ComponentsModule } from '@components/components.module';
 import { CoreModule } from '@core/core.module';
 import { environment } from '@env/environment';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
@@ -17,7 +25,16 @@ import { environment } from '@env/environment';
     RoutingModule,
     CoreModule,
     ComponentsModule,
+    HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
