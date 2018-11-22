@@ -1,7 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { EmbedVideoService } from 'ngx-embed-video';
-import { ModalComponent } from './modal/modal.component';
 import { Playlist } from './playlist.model';
 import { SlidersService } from './sliders.service';
 
@@ -40,19 +39,6 @@ export class SlidersComponent implements OnInit {
 
   public scrollLeft(): void {
     this.widgetsContent.nativeElement.scrollTo({ left: (this.widgetsContent.nativeElement.scrollLeft - 810), behavior: 'smooth' });
-  }
-
-  openAddVideo() {
-    console.log('open modal');
-    const dialogRef = this.dialog.open(ModalComponent, {
-      width: '250px',
-      // data: {name: this.name, animal: this.animal}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      // this.animal = result;
-    });
   }
 
   // TODO mettre en dynamique la thumbnail avec https://img.youtube.com/vi/xWtfo9kuRTU/0.jpg

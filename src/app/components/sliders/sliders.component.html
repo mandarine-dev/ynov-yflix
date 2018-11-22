@@ -1,16 +1,5 @@
 <div *ngIf="playlists" id="sliders">
 
-    <div class="add-button">
-        <div class="sub-button tl" (click)="openAddVideo()">
-            <i class="material-icons">
-                video_call
-            </i>
-        </div>
-        <div class="sub-button tr"></div>
-        <div class="sub-button bl"></div>
-        <div class="sub-button br"></div>
-    </div>
-
     <div *ngFor="let playlist of playlists" id="playlist">
 
         <p class="playlist-title">{{ playlist.i18n | translate }}</p>
@@ -21,7 +10,7 @@
                 <li *ngFor="let video of playlist.videos" class="item">
                     <img class="thumbnail" [src]="video.thumbnail" alt="" width="235" style="object-fit: cover;">
                     <div class="summary">
-                        {{video.name}}
+                        {{ video.title }}
                     </div>
                 </li>
             </ul>
@@ -39,8 +28,4 @@
 
     </div>
 
-
-
 </div>
-
-<div [innerHtml]="iframe_html"></div>

@@ -1,11 +1,7 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA, ErrorStateMatcher } from '@angular/material';
-import { FormControl, Validators, FormGroupDirective, NgForm, FormGroup, FormBuilder } from '@angular/forms';
-
-export interface DialogData {
-  animal: string;
-  name: string;
-}
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { ErrorStateMatcher, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { Video } from '@app/core/models/video';
 
 @Component({
   selector: 'app-header-modal',
@@ -15,30 +11,34 @@ export interface DialogData {
 
 export class HeaderModalComponent implements OnInit {
 
-  reg = '^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$';
+  get f() { return this.videoForm.controls; }
 
   videoForm: FormGroup;
-
   matcher = new MyErrorStateMatcher();
 
   constructor(
     public dialogRef: MatDialogRef<HeaderModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    @Inject(MAT_DIALOG_DATA) public data: Video,
     private formBuilder: FormBuilder
   ) { }
 
   ngOnInit() {
     this.videoForm = this.formBuilder.group({
-      url: ['', [Validators.required, Validators.pattern(this.reg)]],
+      url: ['', [Validators.required, Validators.pattern(
+        '^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$'
+      )]],
       title: ['', Validators.required],
+      category: ['', Validators.required],
       description: ['', Validators.required],
     });
   }
 
-  get f() { return this.videoForm.controls; }
-
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  addVideo() {
+
   }
 
 }

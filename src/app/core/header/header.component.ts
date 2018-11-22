@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthentificationService } from '../services/authentification/authentification.service';
-import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
+import { Router } from '@angular/router';
+import { SlidersService } from '@app/components/sliders/sliders.service';
+import { EmbedVideoService } from 'ngx-embed-video';
+import { Video } from '../models/video';
+import { AuthentificationService } from '../services/authentification/authentification.service';
 import { HeaderModalComponent } from './header-modal/header-modal.component';
 
 @Component({
@@ -13,9 +16,15 @@ import { HeaderModalComponent } from './header-modal/header-modal.component';
 
 export class HeaderComponent implements OnInit {
 
-  animal: string;
+  video = new Video();
 
-  constructor(public auth: AuthentificationService, private router: Router, public dialog: MatDialog) { }
+  constructor(
+    public auth: AuthentificationService,
+    private router: Router,
+    public dialog: MatDialog,
+    private embedSvc: EmbedVideoService,
+    private sliderSvc: SlidersService
+  ) { }
 
   ngOnInit() {
   }
@@ -32,11 +41,32 @@ export class HeaderComponent implements OnInit {
     console.log('The dialog was open');
     const dialogRef = this.dialog.open(HeaderModalComponent, {
       width: '450px',
-      height: '450px'
+      height: '450px',
+      data: this.video
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+
+
+
+      console.log('The dialog was closed', result);
+
+
+
+      const thumbnail = this.embedSvc.embed_image(result.url, { image: 'hqdefault' });
+
+
+
+      thumbnail.then(imageUrl => {
+        this.video.thumbnail = imageUrl.link;
+        this.sliderSvc.addVideo(this.video);
+      });
+
+
+      console.log('video final ', this.video);
+
+
+      // todo: https://img.youtube.com/vi/xWtfo9kuRTU/0.jpg
     });
   }
 
