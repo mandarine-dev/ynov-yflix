@@ -46,7 +46,7 @@
 
 .item {
   width: 235px;
-  height: 135px;
+  height: 130px;
   box-sizing: border-box;
   transition: 1s transform;
   -webkit-transition: 1s -webkit-transform;
@@ -95,7 +95,7 @@
 
 .thumbnail {
   width: 235px;
-  height: 135px;
+  height: 131px;
   transition: .5s ease;
 }
 

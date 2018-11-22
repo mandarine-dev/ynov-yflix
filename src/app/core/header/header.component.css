@@ -9,8 +9,8 @@
 .logo {
     width: 80px;
     position: absolute;
-    left: 10px;
-    top: 10px;
+    left: 30px;
+    top: 15px;
 }
 
 /* dropdown */
@@ -18,8 +18,8 @@
 .dropdown {
     position: absolute;
     align-items: right;
-    right: 20px;
-    top: 10px;
+    right: 30px;
+    top: 15px;
 }
 
 .dropdown-btn {
@@ -63,7 +63,7 @@
 .add-video {
     position: absolute;
     right: 100px;
-    top: 10px;
+    top: 15px;
     color: white;
     font-size: 28px;
 }
