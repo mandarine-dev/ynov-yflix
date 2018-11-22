@@ -41,32 +41,19 @@ export class HeaderComponent implements OnInit {
     console.log('The dialog was open');
     const dialogRef = this.dialog.open(HeaderModalComponent, {
       width: '450px',
-      height: '450px',
-      data: this.video
+      height: '460px',
+      data: this.video,
+      disableClose: true
     });
 
     dialogRef.afterClosed().subscribe(result => {
-
-
-
-      console.log('The dialog was closed', result);
-
-
-
-      const thumbnail = this.embedSvc.embed_image(result.url, { image: 'hqdefault' });
-
-
-
-      thumbnail.then(imageUrl => {
-        this.video.thumbnail = imageUrl.link;
-        this.sliderSvc.addVideo(this.video);
-      });
-
-
-      console.log('video final ', this.video);
-
-
-      // todo: https://img.youtube.com/vi/xWtfo9kuRTU/0.jpg
+      if (result) {
+        const thumbnail = this.embedSvc.embed_image(result.url, { image: 'hqdefault' });
+        thumbnail.then(imageUrl => {
+          this.video.thumbnail = imageUrl.link;
+          this.sliderSvc.addVideo(this.video);
+        });
+      }
     });
   }
 

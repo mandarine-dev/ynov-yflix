@@ -5,8 +5,12 @@
     "WECLOME_MESSAGE": "Bienvenue",
     "ADD_NEW_VIDEO": "Ajouter une nouvelle vidéo",
     "VIDEO_URL": "Url",
-    "VIDEO_TITLE_ERRORS": "Veuillez entrer une adresse valide",
+    "VIDEO_URL_ERRORS": "Veuillez entrer une adresse valide",
+    "VIDEO_TITLE_ERRORS": "Le titre ne doit pas dépasser 60 caractères",
+    "VIDEO_CATEGORY_ERRORS": "Veuillez choisir une catégorie",
     "VIDEO_TITLE": "Titre",
     "VIDEO_DESCRIPTION": "Description",
-    "VIDEO_CATEGORY": "Catégorie"
+    "VIDEO_CATEGORY": "Catégorie",
+    "VIDEO_MODAL_BTN_CANCEL": "Annuler",
+    "VIDEO_MODAL_BTN_ADD": "Ajouter"
 }

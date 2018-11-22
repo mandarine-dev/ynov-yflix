@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { SlidersService } from '@app/components/sliders/sliders.service';
 import { Video } from '@app/core/models/video';
 
 @Component({
@@ -11,34 +12,40 @@ import { Video } from '@app/core/models/video';
 
 export class HeaderModalComponent implements OnInit {
 
-  get f() { return this.videoForm.controls; }
+  // allow to access controls shortly in html
+  get fm() { console.log('videoform', this.videoForm.controls); return this.videoForm.controls; }
 
-  videoForm: FormGroup;
+  categories;
   matcher = new MyErrorStateMatcher();
+  videoForm: FormGroup;
 
   constructor(
     public dialogRef: MatDialogRef<HeaderModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Video,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private sliderSvc: SlidersService
   ) { }
 
   ngOnInit() {
     this.videoForm = this.formBuilder.group({
-      url: ['', [Validators.required, Validators.pattern(
-        '^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$'
-      )]],
-      title: ['', Validators.required],
+      url: ['', [Validators.required, Validators.pattern(this.getUrlRegexPattern())]],
+      title: ['', [Validators.required, Validators.maxLength(60)]],
       category: ['', Validators.required],
-      description: ['', Validators.required],
+      description: [''],
     });
+    this.getCategories();
   }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
-  addVideo() {
+  getCategories() {
+    this.sliderSvc.getPlaylists().subscribe(categories => { this.categories = categories; });
+  }
 
+  getUrlRegexPattern() {
+    return '^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$';
   }
 
 }
