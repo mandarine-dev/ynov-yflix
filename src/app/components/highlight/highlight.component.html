@@ -1,26 +1,12 @@
 <div id="highlight">
 
-    <section class="video-container">
+    <div class="video-container">
+        <iframe #test width="100%" height="100%" src="https://www.youtube.com/embed/HxtLlByaYTc?modestbranding=1&showinfo=0&autoplay=1&vq=highres&disablekb=1&loop=1&rel=0&controls=0"
+            frameborder="0" allow="autoplay">
+        </iframe>
+    </div>
 
-        <!-- <video src="https://www.youtube.com/embed/-SFcIUEvNOQ?autoplay=1&mute=1&enablejsapi=1" frameborder="0" autoplay -->
-        <!-- [muted]="video_muted"></video> -->
-
-        <iframe #test src="https://www.youtube.com/embed/HxtLlByaYTc?autoplay=1&showinfo=0&vq=highres&loop=1&rel=0&controls=0"
-            frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen></iframe>
-
-        <!-- <iframe src="https://www.youtube.com/embed/HxtLlByaYTc?autoplay=1" frameborder="0" allowfullscreen></iframe> -->
-        <div class="callout">
-            <h1 style="color: white">Starwars</h1>
-            <img class="highlight-logo" src="https://vignette.wikia.nocookie.net/joke-battles/images/8/85/Star-Wars-Logo-psd35718.png/revision/latest?cb=20160225173505"
-                alt="">
-        </div>
-    </section>
+    <div class="disable-video"></div>
 
     <i [ngClass]="video_muted ? 'fas fa-volume-mute' : 'fas fa-volume-up'" class="mute-icon" (click)="mute()"></i>
 </div>
-
-<!-- https://player.vimeo.com/video/213322023 -->
-
-<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/HxtLlByaYTc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" -->
-<!-- allowfullscreen></iframe> -->

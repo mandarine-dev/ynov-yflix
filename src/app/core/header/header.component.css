@@ -1,6 +1,9 @@
 #header {
     height: 60px;
-    background-color: purple;
+    position: absolute;
+    width: 100%;
+    top: 0px;
+    z-index: 130;
 }
 
 .logo {
@@ -61,4 +64,6 @@
     position: absolute;
     right: 100px;
     top: 10px;
+    color: white;
+    font-size: 28px;
 }

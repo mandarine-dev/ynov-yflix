@@ -13,7 +13,7 @@ import { Video } from '@app/core/models/video';
 export class HeaderModalComponent implements OnInit {
 
   // allow to access controls shortly in html
-  get fm() { console.log('videoform', this.videoForm.controls); return this.videoForm.controls; }
+  get fm() { return this.videoForm.controls; }
 
   categories;
   matcher = new MyErrorStateMatcher();
@@ -36,7 +36,7 @@ export class HeaderModalComponent implements OnInit {
     this.getCategories();
   }
 
-  onNoClick(): void {
+  onCancel(): void {
     this.dialogRef.close();
   }
 

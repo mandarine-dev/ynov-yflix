@@ -2,8 +2,8 @@
 
   <img class="logo" src="/assets/logo/yflix.png" alt="">
 
-  <button mat-icon-button class="add-video">
-    <mat-icon aria-label="Example icon-button with a heart icon" (click)="openModal()">control_point</mat-icon>
+  <button mat-icon-button class="add-video" (click)="openModal()">
+    <mat-icon aria-label="Example icon-button with a heart icon">control_point</mat-icon>
   </button>
 
   <div *ngIf="auth.$user | async as $user" class="dropdown">
