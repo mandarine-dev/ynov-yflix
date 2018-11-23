@@ -13,15 +13,6 @@
     </mat-form-field>
 
     <mat-form-field appearance="outline">
-      <mat-label>{{'CATEGORY_I18N' | translate}}</mat-label>
-      <input [(ngModel)]="data.i18n" matInput placeholder="" formControlName="i18n">
-      <mat-icon matSuffix>subtitles</mat-icon>
-      <mat-error *ngIf="fm.i18n.errors">
-        {{ 'REQUIRED_FIELD' | translate }}
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
       <mat-label>{{'CATEGORY_SPANISH_TRANSLATION' | translate}}</mat-label>
       <input [(ngModel)]="data.spanish_name" matInput placeholder="" formControlName="spanish_name">
       <mat-icon matSuffix>subtitles</mat-icon>
@@ -53,7 +44,7 @@
 
 <div mat-dialog-actions align="end">
   <button mat-button (click)="onCancel()">{{ 'VIDEO_MODAL_BTN_CANCEL' | translate }}</button>
-  <button mat-button [mat-dialog-close]="data" color="primary" [disabled]="categoryForm.invalid">
+  <button mat-raised-button [mat-dialog-close]="data" [disabled]="categoryForm.invalid">
     {{ 'VIDEO_MODAL_BTN_ADD' | translate }}
   </button>
 </div>

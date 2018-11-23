@@ -50,7 +50,7 @@
 
 <div mat-dialog-actions align="end">
   <button mat-button (click)="onCancel()">{{ 'VIDEO_MODAL_BTN_CANCEL' | translate }}</button>
-  <button mat-button [mat-dialog-close]="data" color="primary" [disabled]="videoForm.invalid">
+  <button mat-raised-button [mat-dialog-close]="data" [disabled]="videoForm.invalid">
     {{ 'VIDEO_MODAL_BTN_ADD' | translate }}
   </button>
 </div>
