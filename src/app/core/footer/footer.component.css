@@ -1,5 +1,20 @@
 #footer {
-    margin-top: -230px;
-    height: 250px;
-    background-color: darkcyan;
+    height: 50px;
+    background-color: rgb(20, 20, 20);
+}
+
+.copyright {
+    text-align: center;
+    margin-top: 0px;
+    font-weight: 500;
+    padding-top: 10px;
+}
+
+.btn-lang {
+    position: absolute;
+    right: 20px;
+}
+
+.flag {
+    padding-right: 10px;
 }

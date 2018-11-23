@@ -9,8 +9,8 @@ import { HomeComponent } from './home/home.component';
 import { ProgramsRoutingModule } from './home/home.routing';
 import { HomeNewProfileComponent } from './home/new-profile/new-profile.component';
 import { LoginComponent } from './login/login.component';
-import { ModalComponent } from './sliders/modal/modal.component';
 import { SlidersComponent } from './sliders/sliders.component';
+import { VideoModalComponent } from './sliders/video-modal/video-modal.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
@@ -29,10 +29,13 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     UserProfileComponent,
     HighlightComponent,
     SlidersComponent,
-    ModalComponent
+    VideoModalComponent
   ],
   exports: [
-    ModalComponent
+    VideoModalComponent
+  ],
+  entryComponents: [
+    VideoModalComponent
   ]
 })
 export class ComponentsModule { }

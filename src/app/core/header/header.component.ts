@@ -40,8 +40,8 @@ export class HeaderComponent implements OnInit {
   openModal() {
     console.log('The dialog was open');
     const dialogRef = this.dialog.open(HeaderModalComponent, {
-      width: '450px',
-      height: '460px',
+      width: '600px',
+      height: '570px',
       data: this.video,
       disableClose: true
     });

@@ -8,13 +8,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MaterialModule } from '@app/material.module';
 import { SharedModule } from '@shared/shared.module';
 import { EmbedVideo } from 'ngx-embed-video';
+import { NgxFlagIconCssModule } from 'ngx-flag-icon-css';
 import { BarComponent } from './bar/bar.component';
 import { FooterComponent } from './footer/footer.component';
+import { CategoryModalComponent } from './header/header-modal/category-modal/category-modal.component';
+import { HeaderModalComponent } from './header/header-modal/header-modal.component';
 import { HeaderComponent } from './header/header.component';
 import { AuthentificationGuard } from './services/authentification/authentification.guard';
 import { AuthentificationService } from './services/authentification/authentification.service';
-import { HeaderModalComponent } from './header/header-modal/header-modal.component';
-import { MatDialog } from '@angular/material';
+import { NotifyService } from './services/notify.service';
 
 @NgModule({
   imports: [
@@ -26,27 +28,32 @@ import { MatDialog } from '@angular/material';
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
     AngularFireStorageModule, // imports firebase/storage only needed for storage features,
     MaterialModule,
-    EmbedVideo
+    EmbedVideo,
+    NgxFlagIconCssModule
   ],
   declarations: [
     HeaderComponent,
     FooterComponent,
     BarComponent,
-    HeaderModalComponent
+    HeaderModalComponent,
+    CategoryModalComponent
   ],
   providers: [
     AuthentificationService,
-    AuthentificationGuard
+    AuthentificationGuard,
+    NotifyService
   ],
   exports: [
     HeaderComponent,
     FooterComponent,
     BarComponent,
     MaterialModule,
-    HeaderModalComponent
+    HeaderModalComponent,
+    CategoryModalComponent
   ],
   entryComponents: [
-    HeaderModalComponent
+    HeaderModalComponent,
+    CategoryModalComponent
   ]
 })
 export class CoreModule { }
