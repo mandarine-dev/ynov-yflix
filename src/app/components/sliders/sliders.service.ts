@@ -5,38 +5,56 @@ import { Video } from '@app/core/models/video';
 import { NotifyService } from '@app/core/services/notify.service';
 import { Observable } from 'rxjs';
 import { Playlist } from './playlist.model';
+import { TranslateService } from '@ngx-translate/core';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SlidersService {
 
-  constructor(private afs: AngularFirestore, private notifySvc: NotifyService) { }
+  constructor(private afs: AngularFirestore, private notifySvc: NotifyService, private translateSvc: TranslateService) { }
 
   getPlaylists(): Observable<Playlist[]> {
     return this.afs.collection<Playlist>('playlists').valueChanges();
   }
 
   getVideos(playlist: string): Observable<Video[]> {
-    return this.afs.collection<Video>(`playlists/${playlist}/videos`, ref => ref.orderBy('addedDate', 'desc')).valueChanges();
+    // on utilise un snapshotChanges pour récupérer l'id car toutes les métadatas de l'objet sont présentes contrairement au valuechanges
+    return this.afs.collection<Video>(`playlists/${playlist}/videos`, ref => ref.orderBy('addedDate', 'desc')).snapshotChanges().pipe(
+      map(videos => {
+        return videos.map(video => {
+          const data = video.payload.doc.data() as Video;
+          data.id = video.payload.doc.id;
+          return data;
+        });
+      })
+    );
+  }
+
+  editTitleVideo(playlist: string, id: string, title: string) {
+    this.afs.collection(`playlists/${playlist}/videos`).doc(id).update({ 'title': title })
+      .then(() => this.notifySvc.success(this.translateSvc.instant('SNACK_SUCCESS_DELETE_VIDEO')))
+      .catch((error) => this.notifySvc.success(this.translateSvc.instant('SNACK_ERROR_DELETE_VIDEO')));
+  }
+
+  deleteVideo(playlist: string, id: string) {
+    this.afs.collection(`playlists/${playlist}/videos`).doc(id).delete()
+      .then(() => this.notifySvc.success(this.translateSvc.instant('SNACK_SUCCESS_DELETE_VIDEO')))
+      .catch((error) => this.notifySvc.success(this.translateSvc.instant('SNACK_ERROR_DELETE_VIDEO')));
   }
 
   addPlaylist(playlist: Category) {
-    console.log('addPlaylist', playlist);
-    this.afs.firestore.collection('playlists').doc(playlist.name).set(Object.assign({}, playlist));
-    this.notifySvc.success('Catégorie ajoutée !');
+    this.afs.firestore.collection('playlists').doc(playlist.name).set(Object.assign({}, playlist))
+      .then(() => this.notifySvc.success(this.translateSvc.instant('SNACK_SUCCESS_CATEGORY')))
+      .catch((error) => this.notifySvc.success(this.translateSvc.instant('SNACK_ERROR_CATEGORY')));
   }
 
   addVideo(video: Video) {
-    console.log('addVideo', video);
-    this.afs.firestore.collection('playlists').doc(video.category).collection('videos').add({
-      url: video.url,
-      title: video.title,
-      category: video.category,
-      description: video.description,
-      thumbnail: video.thumbnail,
-      addedDate: new Date()
-    });
+    video.addedDate = new Date();
+    this.afs.firestore.collection('playlists').doc(video.category).collection('videos').add(Object.assign({}, video))
+      .then(() => this.notifySvc.success(this.translateSvc.instant('SNACK_SUCCESS_VIDEO')))
+      .catch((error) => this.notifySvc.success(this.translateSvc.instant('SNACK_ERROR_VIDEO')));
   }
 
 }

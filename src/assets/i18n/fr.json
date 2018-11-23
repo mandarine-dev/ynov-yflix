@@ -1,7 +1,13 @@
 {
+    "CANCEL": "Annuler",
+    "MODIFY": "Modifier",
     "WECLOME_MESSAGE": "Bienvenue",
     "REQUIRED_FIELD": "Champs requis",
     "ADD_NEW_VIDEO": "Ajouter une nouvelle vidéo",
+    "MODIFY_VIDEO": "Modifier la vidéo",
+    "DELETE_VIDEO": "Supprimer la vidéo",
+    "SNACK_SUCCESS_DELETE_VIDEO": "Vidéo correctement supprimée",
+    "SNACK_ERROR_DELETE_VIDEO": "Un problème est survenu lors de la suppression",
     "VIDEO_URL": "Url",
     "VIDEO_URL_ERRORS": "Veuillez entrer une adresse valide",
     "VIDEO_TITLE_ERRORS": "Le titre ne doit pas dépasser 60 caractères",
@@ -12,13 +18,14 @@
     "VIDEO_CATEGORY": "Catégorie",
     "VIDEO_MODAL_BTN_CANCEL": "Annuler",
     "VIDEO_MODAL_BTN_ADD": "Ajouter",
+    "SNACK_SUCCESS_VIDEO": "Vidéo ajoutée avec succès",
+    "SNACK_ERROR_VIDEO": "Un problème est survenu durant l'ajout de la vidéo",
     "ADD_NEW_CATEGORY": "Ajouter une nouvelle catégorie",
     "CATEGORY_NAME": "Nom de la catégorie",
     "CATEGORY_I18N": "Clé de traduction",
     "CATEGORY_SPANISH_TRANSLATION": "Traduction espagnole",
     "CATEGORY_ENGLISH_TRANSLATION": "Traduction anglaise",
     "CATEGORY_FRENCH_TRANSLATION": "Traduction française",
-    "CATEGORY": "Catégorie",
-    "COMEDY": "Comédie",
-    "MUSIC": "Musique"
+    "SNACK_SUCCESS_CATEGORY": "Catégorie ajoutée avec succès",
+    "SNACK_ERROR_CATEGORY": "Un problème est survenu durant la création de la catégorie"
 }

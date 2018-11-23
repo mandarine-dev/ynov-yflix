@@ -5,6 +5,7 @@ import { EmbedVideoService } from 'ngx-embed-video';
 import { Playlist } from './playlist.model';
 import { SlidersService } from './sliders.service';
 import { VideoModalComponent } from './video-modal/video-modal.component';
+import { Video } from '@app/core/models/video';
 
 @Component({
   selector: 'app-sliders',
@@ -40,22 +41,18 @@ export class SlidersComponent implements OnInit {
     this.iframe_html = this.embedSvc.embed(this.youtubeUrl);
   }
 
-  openModifyModal(item) {
+  openModifyModal(item: Video) {
     console.log('The dialog was open with item => ', item);
     const dialogRef = this.dialog.open(VideoModalComponent, {
-      width: '300px',
-      height: '400px',
+      width: '600px',
+      height: '210px',
       data: item,
       disableClose: true
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        // const thumbnail = this.embedSvc.embed_image(result.url, { image: 'hqdefault' });
-        // thumbnail.then(imageUrl => {
-        //   this.video.thumbnail = imageUrl.link;
-        //   this.sliderSvc.addVideo(this.video);
-        // });
+    dialogRef.afterClosed().subscribe(title => {
+      if (title) {
+        this.sliderSvc.editTitleVideo(item.category, item.id, title);
       }
     });
   }

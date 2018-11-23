@@ -8,16 +8,18 @@
                 <p *ngSwitchCase="'fr'" class="playlist-title">{{ playlist.french_name }}</p>
                 <p *ngSwitchCase="'en'" class="playlist-title">{{ playlist.english_name }}</p>
                 <p *ngSwitchCase="'es'" class="playlist-title">{{ playlist.spanish_name }}</p>
-                <p *ngSwitchDefault class="playlist-title">{{ playlist.english_name | translate }}</p>
+                <p *ngSwitchDefault class="playlist-title">{{ playlist.french_name | translate }}</p>
             </div>
 
             <div class="container" #tilesContainer>
 
                 <ul class="slider">
                     <li *ngFor="let video of playlist.videos" class="item">
-                        <div class="item-modify" (click)="openModifyModal()">
+
+                        <button mat-icon-button class="item-modify" (click)="openModifyModal(video)">
                             <mat-icon>create</mat-icon>
-                        </div>
+                        </button>
+
                         <img class="thumbnail" [src]="video.thumbnail" alt="" width="235" style="object-fit: cover;">
                         <div class="summary">
                             {{ video.title }}

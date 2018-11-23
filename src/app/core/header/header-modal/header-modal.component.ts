@@ -5,6 +5,7 @@ import { SlidersService } from '@app/components/sliders/sliders.service';
 import { Category } from '@app/core/models/category';
 import { Video } from '@app/core/models/video';
 import { CategoryModalComponent } from './category-modal/category-modal.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header-modal',
@@ -29,6 +30,7 @@ export class HeaderModalComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: Video,
     private formBuilder: FormBuilder,
     private sliderSvc: SlidersService,
+    private translateSvc: TranslateService
   ) { }
 
   ngOnInit() {
@@ -54,18 +56,16 @@ export class HeaderModalComponent implements OnInit {
   }
 
   openCategoryModal() {
-    console.log('open category modal');
     const dialogRef = this.dialog.open(CategoryModalComponent, {
       width: '400px',
-      height: '530px',
+      height: '440px',
       data: this.category,
       disableClose: true
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        console.log('result', result);
-        this.sliderSvc.addPlaylist(result);
+    dialogRef.afterClosed().subscribe(playlist => {
+      if (playlist) {
+        this.sliderSvc.addPlaylist(playlist);
       }
     });
   }

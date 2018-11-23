@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Video } from '@app/core/models/video';
 import { SlidersService } from '../sliders.service';
@@ -11,8 +11,11 @@ import { SlidersService } from '../sliders.service';
 })
 export class VideoModalComponent implements OnInit {
 
+  videoForm: FormGroup;
+
+  get fm() { return this.videoForm.controls; }
+
   constructor(
-    public dialog: MatDialog,
     public dialogRef: MatDialogRef<VideoModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Video,
     private formBuilder: FormBuilder,
@@ -20,6 +23,18 @@ export class VideoModalComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.videoForm = this.formBuilder.group({
+      title: ['', [Validators.required, Validators.maxLength(60)]],
+    });
+  }
+
+  onCancel(): void {
+    this.dialogRef.close();
+  }
+
+  deleteVideo() {
+    this.sliderSvc.deleteVideo(this.data.category, this.data.id);
+    this.dialogRef.close();
   }
 
 }

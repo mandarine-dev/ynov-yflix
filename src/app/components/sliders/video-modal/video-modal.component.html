@@ -1,3 +1,29 @@
-<p>
-  video-modal works!
-</p>
+<h1 mat-dialog-title>{{'MODIFY_VIDEO' | translate}}</h1>
+
+<div mat-dialog-content>
+  <form class="form" [formGroup]="videoForm">
+
+    <mat-form-field appearance="outline">
+      <mat-label>{{'VIDEO_TITLE' | translate}}</mat-label>
+      <input [(ngModel)]="data.title" matInput placeholder="" formControlName="title">
+      <mat-icon matSuffix>code</mat-icon>
+      <mat-error *ngIf="fm.title.errors">
+        {{ 'VIDEO_TITLE_ERRORS' | translate }}
+      </mat-error>
+    </mat-form-field>
+
+  </form>
+</div>
+
+<div mat-dialog-actions align="end">
+  <button mat-flat-button color="warn" (click)="deleteVideo()">
+    {{ 'DELETE_VIDEO' | translate }}
+  </button>
+  <span class="spacer"></span>
+  <button mat-button (click)="onCancel()">
+    {{ 'CANCEL' | translate }}
+  </button>
+  <button mat-button [mat-dialog-close]="data.title" color="primary" [disabled]="videoForm.invalid">
+    {{ 'MODIFY' | translate }}
+  </button>
+</div>

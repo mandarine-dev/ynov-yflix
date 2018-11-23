@@ -12,6 +12,7 @@ import { LoginComponent } from './login/login.component';
 import { SlidersComponent } from './sliders/sliders.component';
 import { VideoModalComponent } from './sliders/video-modal/video-modal.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { MaterialModule } from '@app/material.module';
 
 @NgModule({
   imports: [
@@ -19,7 +20,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     SharedModule,
     CoreModule,
     ProgramsRoutingModule,
-    FormsModule,
+    FormsModule
   ],
   declarations: [
     HomeComponent,
@@ -32,7 +33,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     VideoModalComponent
   ],
   exports: [
-    VideoModalComponent
+    VideoModalComponent,
   ],
   entryComponents: [
     VideoModalComponent
