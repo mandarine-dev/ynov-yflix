@@ -49,17 +49,3 @@
 .name {
     text-align: center;
 }
-
-.logo {
-    width: 110px;
-    height: 55px;
-    margin: 15px 60px;
-    background: url("assets/logo/yflix.png");
-    background-size: cover;
-}
-
-.delete-profile {
-    position: relative;
-    text-align: right;
-    top: 40px;
-}
