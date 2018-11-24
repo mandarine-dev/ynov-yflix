@@ -13,7 +13,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.auth.$user.subscribe(user => {
-      console.log('user', user);
       if (user) {
         this.router.navigateByUrl('/');
       }

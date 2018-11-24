@@ -36,13 +36,11 @@ export class SlidersComponent implements OnInit {
           playlist['videos'] = videos;
         });
       });
-      console.log('this.playlists', this.playlists);
     });
     this.iframe_html = this.embedSvc.embed(this.youtubeUrl);
   }
 
   openModifyModal(item: Video) {
-    console.log('The dialog was open with item => ', item);
     const dialogRef = this.dialog.open(VideoModalComponent, {
       width: '600px',
       height: '210px',

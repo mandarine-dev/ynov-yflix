@@ -31,7 +31,6 @@ export class AuthentificationService {
 
   googleLogin() {
     const provider = new auth.GoogleAuthProvider();
-    console.log('provider', provider);
     return this.oAuthLogin(provider);
   }
 
@@ -80,12 +79,12 @@ export class AuthentificationService {
 
   updateSubtitle(user, subtitleState: boolean) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
-    userRef.update({'subtitleEnabled': subtitleState});
+    userRef.update({ 'subtitleEnabled': subtitleState });
   }
 
   updateCulture(user, cultureValue: string) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
-    userRef.update({'culture': cultureValue});
+    userRef.update({ 'culture': cultureValue });
   }
 
 }

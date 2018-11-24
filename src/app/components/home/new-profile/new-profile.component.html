@@ -1,4 +1,4 @@
-<app-bar [value]="uploadPercent | async"></app-bar> -->
+<app-bar [value]="uploadPercent | async"></app-bar>
 
 <div id="profile-container">
 
@@ -30,7 +30,7 @@
     <button mat-button (click)="onCancel()">
       {{ 'VIDEO_MODAL_BTN_CANCEL' | translate }}
     </button>
-    <button mat-raised-button (click)="onCreateProfile()" [disabled]="profileForm.invalid">
+    <button mat-raised-button (click)="onCreateProfile()" [disabled]="profileForm.invalid || (uploadPercent | async) === 100">
       {{ 'VIDEO_MODAL_BTN_ADD' | translate }}
     </button>
   </div>

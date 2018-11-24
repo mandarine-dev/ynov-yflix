@@ -22,7 +22,6 @@ export class HomeProfileComponent implements OnInit {
   }
 
   openProfile(profile) {
-    console.log('openProfile', profile);
     const url = 'home/' + profile.id;
     this.router.navigate([url]);
   }
