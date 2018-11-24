@@ -1,22 +1,38 @@
-<div class="align">
-  <div class="card-form">
-    <form class="signup">
-      <div class="form-title">Ajouter un nouveau profil</div>
-      <div class="form-body">
-        <div class="row">
-          <img class="profile-image" [src]="downloadURL | async" (click)="myfile.click()" />
-          <input #myfile type="file" style="display: none;" (change)="uploadFile($event)" />
-          <input type="text" placeholder="Nom" name="username" [(ngModel)]="profile.username">
-        </div>
+<app-bar [value]="uploadPercent | async"></app-bar> -->
+
+<div id="profile-container">
+
+  <h1 mat-dialog-title style="margin-top: 0px; padding-top: 10px">{{'ADD_PROFILE' | translate}}</h1>
+
+  <div mat-dialog-content>
+
+    <form class="form" [formGroup]="profileForm">
+
+      <div class="profile-image-container">
+        <img class="profile-image" [src]="profile.photoUrl" (click)="myfile.click()" />
+        <input #myfile type="file" style="display: none;" (change)="uploadFile($event)" />
       </div>
 
-      <div class="rule"></div>
-      <div class="form-footer">
-        <a (click)="cancel()">Annuler</a>
-        <a (click)="validate()">Valider</a>
-      </div>
+      <mat-form-field appearance="outline">
+        <mat-label>{{'PROFILE_USERNAME' | translate}}</mat-label>
+        <input [(ngModel)]="profile.username" matInput placeholder="" formControlName="username">
+        <mat-icon matSuffix>perm_identity</mat-icon>
+        <mat-error *ngIf="fm.username.errors">
+          {{ 'REQUIRED_FIELD' | translate }}
+        </mat-error>
+      </mat-form-field>
+
     </form>
-  </div>
-</div>
 
-<app-bar [value]="uploadPercent | async"></app-bar>
+  </div>
+
+  <div mat-dialog-actions align="end">
+    <button mat-button (click)="onCancel()">
+      {{ 'VIDEO_MODAL_BTN_CANCEL' | translate }}
+    </button>
+    <button mat-raised-button (click)="onCreateProfile()" [disabled]="profileForm.invalid">
+      {{ 'VIDEO_MODAL_BTN_ADD' | translate }}
+    </button>
+  </div>
+
+</div>

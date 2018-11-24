@@ -29,5 +29,9 @@
     "CATEGORY_ENGLISH_TRANSLATION": "Traduction anglaise",
     "CATEGORY_FRENCH_TRANSLATION": "Traduction française",
     "SNACK_SUCCESS_CATEGORY": "Catégorie ajoutée avec succès",
-    "SNACK_ERROR_CATEGORY": "Un problème est survenu durant la création de la catégorie"
+    "SNACK_ERROR_CATEGORY": "Un problème est survenu durant la création de la catégorie",
+    "PROFILE_USERNAME": "Nom d'utilisateur",
+    "ADD_PROFILE": "Ajouter un profil",
+    "SNACK_SUCCESS_ADD_PROFILE": "Profil ajouté",
+    "SNACK_ERROR_ADD_PROFILE": "Une erreur est survenue durant l'ajout du profil"
 }

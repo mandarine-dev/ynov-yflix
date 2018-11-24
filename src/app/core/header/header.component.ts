@@ -57,4 +57,8 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+  backHome() {
+    this.router.navigateByUrl('/');
+  }
+
 }
