@@ -25,24 +25,32 @@
     <mat-form-field appearance="outline">
       <mat-select placeholder="{{ 'VIDEO_CATEGORY' | translate }}" [(ngModel)]="data.category" formControlName="category">
         <mat-option *ngFor="let category of categories" [(value)]="category.name">
-          {{ category.i18n | translate }}
+          <div [ngSwitch]="translateSvc.currentLang">
+            <p *ngSwitchCase="'fr'" class="playlist-title">{{ category.french_name }}</p>
+            <p *ngSwitchCase="'en'" class="playlist-title">{{ category.english_name }}</p>
+            <p *ngSwitchCase="'es'" class="playlist-title">{{ category.spanish_name }}</p>
+            <p *ngSwitchDefault class="playlist-title">{{ category.french_name | translate }}</p>
+          </div>
         </mat-option>
         <mat-error *ngIf="fm.title.category">
           {{ 'VIDEO_CATEGORY_ERRORS' | translate }}
         </mat-error>
       </mat-select>
+      <mat-hint align="end" style="color: #7878ce; cursor: pointer" (click)="openCategoryModal()">
+        {{ 'VIDEO_ADD_CATEGORY' | translate }}</mat-hint>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>{{'VIDEO_DESCRIPTION' | translate}}</mat-label>
-      <textarea [(ngModel)]="data.description" matInput placeholder="" formControlName="description"></textarea>
+      <textarea [(ngModel)]="data.description" matInput placeholder="" [cdkTextareaAutosize]="false" formControlName="description"></textarea>
     </mat-form-field>
 
   </form>
 </div>
 
 <div mat-dialog-actions align="end">
-  <button mat-button (click)="onNoClick()">{{ 'VIDEO_MODAL_BTN_CANCEL' | translate }}</button>
-  <button mat-button [mat-dialog-close]="data" cdkFocusInitial color="primary" [disabled]="videoForm.invalid">{{
-    'VIDEO_MODAL_BTN_ADD' | translate }}</button>
+  <button mat-button (click)="onCancel()">{{ 'VIDEO_MODAL_BTN_CANCEL' | translate }}</button>
+  <button mat-raised-button [mat-dialog-close]="data" [disabled]="videoForm.invalid">
+    {{ 'VIDEO_MODAL_BTN_ADD' | translate }}
+  </button>
 </div>

@@ -1,11 +1,14 @@
-<!-- <div class="logo"></div> -->
-
 <div id="profiles">
 
     <div class="profile" *ngFor="let profile of profiles" (click)="openProfile(profile)">
+        <button mat-fab class="open">
+            <mat-icon>visibility</mat-icon>
+        </button>
         <img class="thumb" [src]="profile.photoUrl">
         <p class="name">{{ profile.username }} </p>
     </div>
+
+
 
     <div class="profile" (click)="openAddProfile()">
         <img class="thumb" src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Plus_symbol.svg">

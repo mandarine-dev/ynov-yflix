@@ -1,4 +1,16 @@
 <div id="footer">
 
-    <h1 style="margin-top: 0px;">footer</h1>
+    <button class="btn-lang" mat-button [matMenuTriggerFor]="menu" overlapTrigger="true">
+        <flag-icon class="flag" [country]="selectedLang.key"></flag-icon>
+        {{ selectedLang.caption }}
+    </button>
+
+    <mat-menu #menu="matMenu" [overlapTrigger]="false" yPosition="below">
+        <button *ngFor="let lang of langs" mat-menu-item (click)="onApplyLang(lang)">
+            <flag-icon class="flag" [country]="lang.key"></flag-icon>
+            {{lang.caption}}
+        </button>
+    </mat-menu>
+
+    <p class="copyright">© 2018 Yflix, Inc</p>
 </div>

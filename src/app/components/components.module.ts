@@ -9,9 +9,10 @@ import { HomeComponent } from './home/home.component';
 import { ProgramsRoutingModule } from './home/home.routing';
 import { HomeNewProfileComponent } from './home/new-profile/new-profile.component';
 import { LoginComponent } from './login/login.component';
-import { ModalComponent } from './sliders/modal/modal.component';
 import { SlidersComponent } from './sliders/sliders.component';
+import { VideoModalComponent } from './sliders/video-modal/video-modal.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { MaterialModule } from '@app/material.module';
 
 @NgModule({
   imports: [
@@ -19,7 +20,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     SharedModule,
     CoreModule,
     ProgramsRoutingModule,
-    FormsModule,
+    FormsModule
   ],
   declarations: [
     HomeComponent,
@@ -29,10 +30,13 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     UserProfileComponent,
     HighlightComponent,
     SlidersComponent,
-    ModalComponent
+    VideoModalComponent
   ],
   exports: [
-    ModalComponent
+    VideoModalComponent,
+  ],
+  entryComponents: [
+    VideoModalComponent
   ]
 })
 export class ComponentsModule { }

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Profile } from '@app/core/models/profile';
 import { AuthentificationService } from '@app/core/services/authentification/authentification.service';
 import { HomeService } from '@components/home/home.service';
+import { orderBy } from 'lodash';
 
 @Component({
   selector: 'app-home-profile',
@@ -21,7 +22,6 @@ export class HomeProfileComponent implements OnInit {
   }
 
   openProfile(profile) {
-    console.log('openProfile', profile);
     const url = 'home/' + profile.id;
     this.router.navigate([url]);
   }
@@ -33,7 +33,6 @@ export class HomeProfileComponent implements OnInit {
 
   getProfiles() {
     this.homeSvc.getProfiles(this.authSvc.user.uid).subscribe(result => {
-      console.log('users ', result);
       this.profiles = result;
     });
   }

@@ -1,8 +1,11 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
-import { ErrorStateMatcher, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { ErrorStateMatcher, MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { SlidersService } from '@app/components/sliders/sliders.service';
+import { Category } from '@app/core/models/category';
 import { Video } from '@app/core/models/video';
+import { CategoryModalComponent } from './category-modal/category-modal.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header-modal',
@@ -13,17 +16,21 @@ import { Video } from '@app/core/models/video';
 export class HeaderModalComponent implements OnInit {
 
   // allow to access controls shortly in html
-  get fm() { console.log('videoform', this.videoForm.controls); return this.videoForm.controls; }
+  get fm() { return this.videoForm.controls; }
 
   categories;
   matcher = new MyErrorStateMatcher();
   videoForm: FormGroup;
 
+  category = new Category();
+
   constructor(
+    public dialog: MatDialog,
     public dialogRef: MatDialogRef<HeaderModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Video,
     private formBuilder: FormBuilder,
-    private sliderSvc: SlidersService
+    private sliderSvc: SlidersService,
+    private translateSvc: TranslateService
   ) { }
 
   ngOnInit() {
@@ -36,7 +43,7 @@ export class HeaderModalComponent implements OnInit {
     this.getCategories();
   }
 
-  onNoClick(): void {
+  onCancel(): void {
     this.dialogRef.close();
   }
 
@@ -46,6 +53,21 @@ export class HeaderModalComponent implements OnInit {
 
   getUrlRegexPattern() {
     return '^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$';
+  }
+
+  openCategoryModal() {
+    const dialogRef = this.dialog.open(CategoryModalComponent, {
+      width: '400px',
+      height: '440px',
+      data: this.category,
+      disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe(playlist => {
+      if (playlist) {
+        this.sliderSvc.addPlaylist(playlist);
+      }
+    });
   }
 
 }

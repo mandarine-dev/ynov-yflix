@@ -1,8 +1,11 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material';
+import { TranslateService } from '@ngx-translate/core';
 import { EmbedVideoService } from 'ngx-embed-video';
 import { Playlist } from './playlist.model';
 import { SlidersService } from './sliders.service';
+import { VideoModalComponent } from './video-modal/video-modal.component';
+import { Video } from '@app/core/models/video';
 
 @Component({
   selector: 'app-sliders',
@@ -17,7 +20,12 @@ export class SlidersComponent implements OnInit {
   @ViewChild('tilesContainer', { read: ElementRef }) public widgetsContent: ElementRef<any>;
   playlists: Playlist[];
 
-  constructor(private sliderSvc: SlidersService, public dialog: MatDialog, private embedSvc: EmbedVideoService) { }
+  constructor(
+    private sliderSvc: SlidersService,
+    public dialog: MatDialog,
+    private embedSvc: EmbedVideoService,
+    private translateSvc: TranslateService
+  ) { }
 
   // TODO: voir si on peut pas faire autre chose que chainer les appels
   ngOnInit() {
@@ -29,8 +37,22 @@ export class SlidersComponent implements OnInit {
         });
       });
     });
-
     this.iframe_html = this.embedSvc.embed(this.youtubeUrl);
+  }
+
+  openModifyModal(item: Video) {
+    const dialogRef = this.dialog.open(VideoModalComponent, {
+      width: '600px',
+      height: '210px',
+      data: item,
+      disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe(title => {
+      if (title) {
+        this.sliderSvc.editTitleVideo(item.category, item.id, title);
+      }
+    });
   }
 
   public scrollRight(): void {

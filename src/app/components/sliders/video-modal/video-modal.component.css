@@ -2,6 +2,6 @@
     width: 100%;
 }
 
-textarea {
-    height: 140px;
+.spacer {
+    flex: 1 1 auto;
 }
