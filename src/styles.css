@@ -48,3 +48,23 @@ body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+/* snackbars */
+
+.success-snackbar {
+    background: #45b75f;
+    text-align: center;
+    color: white;
+    font-weight: 400;
+}
+
+.error-snackbar {
+    background: #dc3545;
+    text-align: center;
+    color: white;
+    font-weight: 400;
+}
+
+.mat-simple-snackbar {
+    justify-content: center !important;
+}

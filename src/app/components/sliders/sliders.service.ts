@@ -34,27 +34,27 @@ export class SlidersService {
 
   editTitleVideo(playlist: string, id: string, title: string) {
     this.afs.collection(`playlists/${playlist}/videos`).doc(id).update({ 'title': title })
-      .then(() => this.notifySvc.success(this.translateSvc.instant('SNACK_SUCCESS_DELETE_VIDEO')))
-      .catch((error) => this.notifySvc.success(this.translateSvc.instant('SNACK_ERROR_DELETE_VIDEO')));
+      .then(() => this.notifySvc.success(this.translateSvc.instant('SNACK_SUCCESS_MODIFY_VIDEO')))
+      .catch((error) => this.notifySvc.error(this.translateSvc.instant('SNACK_ERROR_MODIFY_VIDEO')));
   }
 
   deleteVideo(playlist: string, id: string) {
     this.afs.collection(`playlists/${playlist}/videos`).doc(id).delete()
       .then(() => this.notifySvc.success(this.translateSvc.instant('SNACK_SUCCESS_DELETE_VIDEO')))
-      .catch((error) => this.notifySvc.success(this.translateSvc.instant('SNACK_ERROR_DELETE_VIDEO')));
+      .catch((error) => this.notifySvc.error(this.translateSvc.instant('SNACK_ERROR_DELETE_VIDEO')));
   }
 
   addPlaylist(playlist: Category) {
     this.afs.firestore.collection('playlists').doc(playlist.name).set(Object.assign({}, playlist))
       .then(() => this.notifySvc.success(this.translateSvc.instant('SNACK_SUCCESS_CATEGORY')))
-      .catch((error) => this.notifySvc.success(this.translateSvc.instant('SNACK_ERROR_CATEGORY')));
+      .catch((error) => this.notifySvc.error(this.translateSvc.instant('SNACK_ERROR_CATEGORY')));
   }
 
   addVideo(video: Video) {
     video.addedDate = new Date();
     this.afs.firestore.collection('playlists').doc(video.category).collection('videos').add(Object.assign({}, video))
       .then(() => this.notifySvc.success(this.translateSvc.instant('SNACK_SUCCESS_VIDEO')))
-      .catch((error) => this.notifySvc.success(this.translateSvc.instant('SNACK_ERROR_VIDEO')));
+      .catch((error) => this.notifySvc.error(this.translateSvc.instant('SNACK_ERROR_VIDEO')));
   }
 
 }

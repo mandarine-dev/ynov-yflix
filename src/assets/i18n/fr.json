@@ -6,6 +6,8 @@
     "ADD_NEW_VIDEO": "Ajouter une nouvelle vidéo",
     "MODIFY_VIDEO": "Modifier la vidéo",
     "DELETE_VIDEO": "Supprimer la vidéo",
+    "SNACK_SUCCESS_MODIFY_VIDEO": "Titre de la vidéo modifié !",
+    "SNACK_ERROR_MODIFY_VIDEO": "Un problème est survenu lors du changement de titre",
     "SNACK_SUCCESS_DELETE_VIDEO": "Vidéo correctement supprimée",
     "SNACK_ERROR_DELETE_VIDEO": "Un problème est survenu lors de la suppression",
     "VIDEO_URL": "Url",

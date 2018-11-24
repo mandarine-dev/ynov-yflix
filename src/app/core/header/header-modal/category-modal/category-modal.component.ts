@@ -24,7 +24,6 @@ export class CategoryModalComponent implements OnInit {
   ngOnInit() {
     this.categoryForm = this.formBuilder.group({
       name: ['', Validators.required],
-      i18n: ['', Validators.required],
       spanish_name: ['', Validators.required],
       english_name: ['', Validators.required],
       french_name: ['', Validators.required],
