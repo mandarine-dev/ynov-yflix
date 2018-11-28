@@ -19,6 +19,7 @@ export class HomeNewProfileComponent implements OnInit {
   profileForm: FormGroup;
   profile = {} as Profile;
   uploadPercent: Observable<number>;
+  isUploading = false;
 
   get fm() { return this.profileForm.controls; }
 
@@ -43,12 +44,14 @@ export class HomeNewProfileComponent implements OnInit {
     const filePath = `picture-${this.helperSvc.newGuid()}`;
     const fileRef = this.storage.ref(filePath);
     const task = this.storage.upload(filePath, file);
-
+    this.isUploading = true;
     this.uploadPercent = task.percentageChanges();
     task.snapshotChanges().pipe(
       finalize(() => {
-        const downloadURL = fileRef.getDownloadURL();
-        downloadURL.subscribe(result => this.profile.photoUrl = result);
+        fileRef.getDownloadURL().subscribe(result => {
+          this.profile.photoUrl = result;
+          this.isUploading = false;
+        });
       })).subscribe(() => {
       });
   }

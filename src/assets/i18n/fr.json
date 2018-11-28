@@ -1,7 +1,9 @@
 {
     "CANCEL": "Annuler",
     "MODIFY": "Modifier",
-    "WECLOME_MESSAGE": "Bienvenue",
+    "WELCOME_MESSAGE": "Bienvenue",
+    "DISCONNECT": "Déconnexion",
+    "PROFILE": "Profil",
     "REQUIRED_FIELD": "Champs requis",
     "ADD_NEW_VIDEO": "Ajouter une nouvelle vidéo",
     "MODIFY_VIDEO": "Modifier la vidéo",

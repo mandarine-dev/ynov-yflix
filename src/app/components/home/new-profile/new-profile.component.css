@@ -22,7 +22,43 @@
     border-radius: 50%;
 }
 
+img {
+    z-index: -1;
+    transition: .3s ease;
+}
+
+.img-surrounder {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    display: inline-grid;
+    cursor: pointer;
+}
+
 .profile-image-container {
     text-align: center;
     padding-bottom: 10px;
+}
+
+.open {
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    background: transparent;
+    color: white;
+    visibility: hidden;
+}
+
+.spinner {
+    position: absolute;
+    height: 100px;
+    width: 100px;
+}
+
+.img-surrounder:hover .open {
+    visibility: visible !important;
+}
+
+.img-surrounder:hover img {
+    opacity: 0.2;
 }

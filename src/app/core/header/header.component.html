@@ -9,8 +9,8 @@
   <div *ngIf="auth.$user | async as $user" class="dropdown">
     <img class="dropdown-btn" [src]="$user.photoURL">
     <div class="dropdown-content">
-      <a (click)="openProfile()">Profile</a>
-      <a (click)="disconnect()">Déconnexion</a>
+      <a (click)="openProfile()">{{ 'PROFILE' | translate}}</a>
+      <a (click)="disconnect()">{{ 'DISCONNECT' | translate}}</a>
     </div>
   </div>
 
