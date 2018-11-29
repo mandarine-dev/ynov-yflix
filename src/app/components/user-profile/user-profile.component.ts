@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material';
+import { Profile } from '@app/core/models/profile';
 import { AuthentificationService } from '@app/core/services/authentification/authentification.service';
-import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
-import {ErrorStateMatcher} from '@angular/material/core';
+import { HomeService } from '@components/home/home.service';
+
 
 @Component({
   selector: 'app-user-profile',
@@ -11,16 +15,41 @@ import {ErrorStateMatcher} from '@angular/material/core';
 
 export class UserProfileComponent implements OnInit {
 
+  constructor(private afs: AngularFirestore, private homeSvc: HomeService, private auth: AuthentificationService) { }
+
+  profiles: Profile[];
+
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
   ]);
 
-   matcher = new MyErrorStateMatcher();
+  cultures: Culture[] = [
+    { value: 'fr-FR', viewValue: 'Français' },
+    { value: 'es-ES', viewValue: 'Espagnol' },
+    { value: 'en-GB', viewValue: 'Anglais' }
+  ];
 
-  constructor(public auth: AuthentificationService) { }
+  matcher = new MyErrorStateMatcher();
 
   ngOnInit() {
+    this.getProfiles();
+  }
+
+  getProfiles() {
+    this.homeSvc.getProfiles(this.auth.user.uid).subscribe(result => {
+      this.profiles = result;
+    });
+  }
+
+  // deleteVideo(playlist: string, id: string) {
+  //   this.afs.collection(`playlists/${playlist}/videos`).doc(id).delete()
+  //     .then(() => this.notifySvc.success('SNACK_SUCCESS_DELETE_VIDEO'))
+  //     .catch((error) => this.notifySvc.error('SNACK_ERROR_DELETE_VIDEO'));
+  // }
+
+  deleteProfil(profilID) {
+    this.afs.collection(`users/${this.auth.user.uid}/profiles`).doc(profilID).delete();
   }
 
 }
@@ -36,12 +65,4 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 export interface Culture {
   value: string;
   viewValue: string;
-}
-
-export class SelectCultureValue {
-  cultures: Culture[] = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'}
-  ];
 }

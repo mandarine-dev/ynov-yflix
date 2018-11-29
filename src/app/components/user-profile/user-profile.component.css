@@ -11,5 +11,104 @@
   .user-informations{
 	  border: solid 1px red;
 	  width: 90%;
-	  display: flex;
-  }
+		display: flex;
+		margin-top: 50px;
+		margin-left: 50px;
+	}
+
+	.user-profile{
+	  border: solid 1px red;
+	  width: 90%;
+		display: flex;
+		margin-top: 50px;
+		margin-left: 50px;
+	}
+	
+	.form-right{
+		margin-left: 24px;
+	}
+
+	#userName{
+		text-align: center !important;
+	}
+
+	.label-left{
+		margin-left: 12px;
+		margin-top: 12px;
+	}
+
+	.profile-picture {
+    border-radius: 100%;
+    overflow: hidden;
+    -webkit-box-sizing: content-box;
+      -moz-box-sizing: content-box;
+			box-sizing: content-box;   
+			position: relative;
+			display: inline-block; 
+	}
+	.profile-picture:hover .edit {
+		display: block;  
+	}
+
+	.edit {
+		padding-top: 70px;	
+		padding-right: 70px;
+		position: absolute;
+		right: 0;
+		top: 0;
+		display: none;
+	}
+	
+	.edit a {
+		color: #ffffff;
+	}
+
+    .big-profile-picture {
+        margin: 0 auto;        
+        border: 5px solid #ECF0F1;
+        width: 150px;
+        height: 150px;
+		}
+		
+		#profiles {
+			width: 40vw;
+			display: flex;
+			justify-content: center;
+	}
+	
+	.profile {
+			padding: 10px;
+	}
+	
+	.profile:hover {
+			cursor: pointer;
+	}
+	
+	.thumb {
+			object-fit: cover;
+			width: 120px;
+			height: 120px;
+			border-radius: 50% !important;
+			transition: .5s ease;
+	}
+	
+	.open {
+			position: absolute;
+			width: 120px;
+			height: 120px;
+			background: transparent;
+			color: white;
+			visibility: hidden;
+	}
+	
+	.profile:hover .thumb {
+			opacity: 0.2;
+	}
+	
+	.profile:hover .open {
+			visibility: visible;
+	}
+	
+	.name {
+			text-align: center;
+	}
