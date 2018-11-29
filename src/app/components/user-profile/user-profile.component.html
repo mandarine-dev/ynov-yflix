@@ -1,78 +1,55 @@
-<div *ngIf="auth.$user | async; then authenticated else guest">
-	<!-- template will replace this div -->
-</div>
-
-
-<!-- User NOT logged in -->
-<ng-template #guest>
-	<h3>Howdy, GUEST</h3>
-	<p>Login to get started...</p>
-
-	<button (click)="auth.googleLogin()">
-		<i class="fa fa-google"></i> Connect Google
-	</button>
-
-</ng-template>
-
-
-<!-- User logged in -->
-<ng-template #authenticated>
-	<div class="main-container" *ngIf="auth.$user | async as $user">
+<div class="main-container" *ngIf="auth.$user | async as $user">
 	<h3>User informations</h3>
-		<div class="user-informations">
-			<div class="label-left">
-				<div class="profile-picture big-profile-picture">				
-					<img style="width:150px;" [src]="$user.photoURL">
-					<div class="edit"><a href="#"><i class="fa fa-pencil fa-lg"></i></a></div>					
-				</div>
-				<h2 id="userName">{{$user.displayName}}</h2>
+	<div class="user-informations">
+		<div class="label-left">
+			<div class="profile-picture big-profile-picture">
+				<img style="width:150px;" [src]="$user.photoURL">
+				<div class="edit"><a href="#"><i class="fa fa-pencil fa-lg"></i></a></div>
 			</div>
-			<div class="form-right">
-					<form class="example-form">
-							<h4>Change your email</h4>
-							<mat-form-field class="example-full-width">
-								<input matInput placeholder="{{$user.email}}" [formControl]="emailFormControl"
-											 [errorStateMatcher]="matcher">
-								<mat-hint>{{'NEW_EMAIL' | translate}}</mat-hint>
-								<mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-									{{'VALID_EMAIL_ADRESS' | translate}}
-								</mat-error>
-								<mat-error *ngIf="emailFormControl.hasError('required')">
-									Email is <strong>required</strong>
-								</mat-error>
-							</mat-form-field>
-
-							<h4>Culture choice</h4>
-							<mat-form-field>
-								<mat-select placeholder="Culture" [(ngModel)]="selectedValue" name="culture">
-									<mat-option *ngFor="let culture of cultures" [value]="culture.viewValue">
-										{{culture.viewValue}}
-									</mat-option>
-								</mat-select>
-							</mat-form-field>
-					</form>            
-			</div>        
+			<h2 id="userName">{{$user.displayName}}</h2>
 		</div>
-		<h3>User profile</h3>
-		<div class="user-profile">
-			<div class="label-left">
-				<div class="profile-picture big-profile-picture">				
-					<img style="width:150px;" [src]="$user.photoURL">
-					<div class="edit"><a href="#"><i class="fa fa-pencil fa-lg"></i></a></div>					
-				</div>
-				<h2 id="userName">{{$user.displayName}}</h2>
+
+		<form class="form" [formGroup]="profileForm">
+			<h4>Change your email</h4>
+			<mat-form-field class="example-full-width">
+				<input matInput placeholder="{{$user.email}}" formControlName="tamerelapute">
+				<mat-hint>{{'NEW_EMAIL' | translate}}</mat-hint>
+				<mat-error *ngIf="fm.tamerelapute.errors.required">
+					{{ 'REQUIRED_FIELD' | translate}}
+				</mat-error>
+			</mat-form-field>
+
+			<h4>Culture choice</h4>
+			<mat-form-field>
+				<mat-select placeholder="Culture" [(ngModel)]="selectedValue" formControlName="culture">
+					<mat-option *ngFor="let culture of cultures" [value]="culture.viewValue">
+						{{culture.viewValue}}
+					</mat-option>
+				</mat-select>
+			</mat-form-field>
+		</form>
+
+	</div>
+
+	<h3>User profile</h3>
+	<div class="user-profile">
+		<div class="label-left">
+			<div class="profile-picture big-profile-picture">
+				<img style="width:150px;" [src]="$user.photoURL">
+				<div class="edit"><a href="#"><i class="fa fa-pencil fa-lg"></i></a></div>
 			</div>
-			<div class="form-right">
-				<div id="profiles">
-    				<div class="profile" *ngFor="let profile of profiles" (click)="deleteProfil(profile.id)">
-        				<button mat-fab class="open">
-            				<mat-icon>delete_sweep</mat-icon>
-        				</button>
-        				<img class="thumb" [src]="profile.photoUrl">
-        				<p class="name">{{ profile.username }} </p>
-    				</div>
-				</div>      
-			</div>        
+			<h2 id="userName">{{$user.displayName}}</h2>
+		</div>
+		<div class="form-right">
+			<div id="profiles">
+				<div class="profile" *ngFor="let profile of profiles" (click)="deleteProfil(profile.id)">
+					<button mat-fab class="open">
+						<mat-icon>delete_sweep</mat-icon>
+					</button>
+					<img class="thumb" [src]="profile.photoUrl">
+					<p class="name">{{ profile.username }} </p>
+				</div>
+			</div>
 		</div>
 	</div>
-</ng-template>
+</div>

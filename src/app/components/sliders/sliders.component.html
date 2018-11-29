@@ -4,12 +4,16 @@
 
         <div *ngIf="playlist.videos && playlist.videos.length > 0">
 
-            <div [ngSwitch]="translateSvc.currentLang">
+            <div class="slider-title-inline" [ngSwitch]="translateSvc.currentLang">
                 <p *ngSwitchCase="'fr'" class="playlist-title">{{ playlist.french_name }}</p>
                 <p *ngSwitchCase="'en'" class="playlist-title">{{ playlist.english_name }}</p>
                 <p *ngSwitchCase="'es'" class="playlist-title">{{ playlist.spanish_name }}</p>
                 <p *ngSwitchDefault class="playlist-title">{{ playlist.french_name | translate }}</p>
             </div>
+
+            <button mat-icon-button class="slider-modify" color="primary" (click)="openModifyModal(video)">
+                <mat-icon class="icon-modify-alignement">create</mat-icon>
+            </button>
 
             <div class="container" #tilesContainer>
 

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Profile } from '@app/core/models/profile';
 import { AuthentificationService } from '@app/core/services/authentification/authentification.service';
 import { HomeService } from '@components/home/home.service';
@@ -15,14 +14,8 @@ import { HomeService } from '@components/home/home.service';
 
 export class UserProfileComponent implements OnInit {
 
-  constructor(private afs: AngularFirestore, private homeSvc: HomeService, private auth: AuthentificationService) { }
-
   profiles: Profile[];
-
-  emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
+  profileForm: FormGroup;
 
   cultures: Culture[] = [
     { value: 'fr-FR', viewValue: 'Français' },
@@ -30,35 +23,33 @@ export class UserProfileComponent implements OnInit {
     { value: 'en-GB', viewValue: 'Anglais' }
   ];
 
-  matcher = new MyErrorStateMatcher();
+  get fm() { return this.profileForm.controls; }
+
+  constructor(
+    private afs: AngularFirestore,
+    private homeSvc: HomeService,
+    private auth: AuthentificationService,
+    private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    this.getProfiles();
+    this.profileForm = this.formBuilder.group({
+      tamerelapute: ['', [Validators.email, Validators.required]],
+      culture: ['', Validators.required]
+    });
+
+    this.auth.$user.subscribe((user) => {
+      this.getProfiles(user.uid);
+    });
   }
 
-  getProfiles() {
-    this.homeSvc.getProfiles(this.auth.user.uid).subscribe(result => {
+  getProfiles(uid) {
+    this.homeSvc.getProfiles(uid).subscribe(result => {
       this.profiles = result;
     });
   }
 
-  // deleteVideo(playlist: string, id: string) {
-  //   this.afs.collection(`playlists/${playlist}/videos`).doc(id).delete()
-  //     .then(() => this.notifySvc.success('SNACK_SUCCESS_DELETE_VIDEO'))
-  //     .catch((error) => this.notifySvc.error('SNACK_ERROR_DELETE_VIDEO'));
-  // }
-
   deleteProfil(profilID) {
     this.afs.collection(`users/${this.auth.user.uid}/profiles`).doc(profilID).delete();
-  }
-
-}
-
-/** Error when invalid control is dirty, touched, or submitted. */
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
   }
 }
 

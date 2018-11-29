@@ -1,3 +1,7 @@
+.form>* {
+    width: 100%;
+}
+
 .example-form {
 	min-width: 150px;
 	max-width: 500px;
@@ -24,9 +28,6 @@
 		margin-left: 50px;
 	}
 	
-	.form-right{
-		margin-left: 24px;
-	}
 
 	#userName{
 		text-align: center !important;
