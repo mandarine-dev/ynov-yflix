@@ -13,7 +13,6 @@ import { SlidersComponent } from './sliders/sliders.component';
 import { VideoModalComponent } from './sliders/video-modal/video-modal.component';
 import { ProfileDeleteModalComponent } from './user-profile/profile-delete-modal/profile-delete-modal.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
-import { VideoDeleteModalComponent } from './user-profile/video-delete-modal/video-delete-modal.component';
 
 @NgModule({
   imports: [
@@ -32,7 +31,6 @@ import { VideoDeleteModalComponent } from './user-profile/video-delete-modal/vid
     HighlightComponent,
     SlidersComponent,
     VideoModalComponent,
-    VideoDeleteModalComponent,
     ProfileDeleteModalComponent
   ],
   exports: [

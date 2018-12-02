@@ -36,7 +36,7 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit() {
     this.profileForm = this.formBuilder.group({
-      tamerelapute: ['', [Validators.email, Validators.required]],
+      emailsValidators: ['', [Validators.email, Validators.required]],
       culture: ['', Validators.required]
     });
 

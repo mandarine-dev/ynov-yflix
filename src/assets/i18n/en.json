@@ -41,5 +41,9 @@
     "MUSIC": "Music",
     "DELETE_USER_PROFILE": "Deleting a profile",
     "DELETE_USER_PROFILE_OF": "Do you want to delete the profile of ",
-    "DELETE": "Delete"
+    "DELETE": "Delete",
+    "USER_INFORMATIONS": "User's informations",
+    "EDIT_YOUR_EMAIL": "Edit your email",
+    "CULTURE_CHOICE": "Choose your language",
+    "USER_PROFILES": "User profiles"
 }

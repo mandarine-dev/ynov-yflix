@@ -1,55 +1,56 @@
 <app-header></app-header>
 
 <div class="main-container" *ngIf="auth.$user | async as $user">
-	<h3>User informations</h3>
 	<div class="user-informations">
-		<div class="label-left">
-			<div class="profile-picture big-profile-picture">
-				<img style="width:150px;" [src]="$user.photoURL">
-				<div class="edit"><a href="#"><i class="fa fa-pencil fa-lg"></i></a></div>
-			</div>
-			<h2 id="userName">{{$user.displayName}}</h2>
+		<div class="block-title">
+			<h3>{{'USER_INFORMATIONS' | translate}}</h3>
 		</div>
+		<div class="block-content">
+			<div class="label-left">
+				<div class="profile-picture big-profile-picture">
+					<img style="width:150px;" [src]="$user.photoURL">
+					<div class="edit"><a href="#"><i class="fa fa-pencil fa-lg"></i></a></div>
+				</div>
+				<h2 id="userName">{{$user.displayName}}</h2>
+			</div>
 
-		<form class="form form-right" [formGroup]="profileForm">
-			<h4>Change your email</h4>
-			<mat-form-field class="example-full-width">
-				<input matInput placeholder="{{$user.email}}" formControlName="tamerelapute">
-				<mat-hint>{{'NEW_EMAIL' | translate}}</mat-hint>
-				<mat-error *ngIf="fm.tamerelapute.errors.required">
-					{{ 'REQUIRED_FIELD' | translate}}
-				</mat-error>
-			</mat-form-field>
+			<form class="form form-right" [formGroup]="profileForm">
+				<h4>{{'EDIT_YOUR_EMAIL' | translate}}</h4>
+				<mat-form-field class="example-full-width">
+					<input matInput placeholder="{{$user.email}}" formControlName="emailsValidators">
+					<mat-hint>{{'NEW_EMAIL' | translate}}</mat-hint>
+					<mat-error *ngIf="fm.emailsValidators.errors.required">
+						{{ 'REQUIRED_FIELD' | translate}}
+					</mat-error>
+				</mat-form-field>
 
-			<h4>Culture choice</h4>
-			<mat-form-field>
-				<mat-select placeholder="Culture" [(ngModel)]="selectedValue" formControlName="culture">
-					<mat-option *ngFor="let culture of cultures" [value]="culture.viewValue">
-						{{culture.viewValue}}
-					</mat-option>
-				</mat-select>
-			</mat-form-field>
-		</form>
-
+				<h4>{{'CULTURE_CHOICE' | translate}}</h4>
+				<mat-form-field>
+					<mat-select placeholder="Culture" [(ngModel)]="selectedValue" formControlName="culture">
+						<mat-option *ngFor="let culture of cultures" [value]="culture.viewValue">
+							{{culture.viewValue}}
+						</mat-option>
+					</mat-select>
+				</mat-form-field>
+			</form>
+		</div>
 	</div>
 
-	<h3>User profile</h3>
+
 	<div class="user-profile">
-		<div class="label-left">
-			<div class="profile-picture big-profile-picture">
-				<img style="width:150px;" [src]="$user.photoURL">
-				<div class="edit"><a href="#"><i class="fa fa-pencil fa-lg"></i></a></div>
-			</div>
-			<h2 id="userName">{{$user.displayName}}</h2>
+		<div class="block-title">
+			<h3>{{'USER_PROFILES' | translate}}</h3>
 		</div>
-		<div class="form-right">
-			<div id="profiles">
-				<div class="profile" *ngFor="let profile of profiles" (click)="openConfirmationModal(profile)">
-					<button mat-fab class="open">
-						<mat-icon>delete_sweep</mat-icon>
-					</button>
-					<img class="thumb" [src]="profile.photoUrl">
-					<p class="name">{{ profile.username }} </p>
+		<div class="block-content">
+			<div class="form-right">
+				<div id="profiles">
+					<div class="profile" *ngFor="let profile of profiles" (click)="openConfirmationModal(profile)">
+						<button mat-fab class="open">
+							<mat-icon>delete_sweep</mat-icon>
+						</button>
+						<img class="thumb" [src]="profile.photoUrl">
+						<p class="name">{{ profile.username }} </p>
+					</div>
 				</div>
 			</div>
 		</div>
