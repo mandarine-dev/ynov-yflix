@@ -11,8 +11,9 @@ import { HomeNewProfileComponent } from './home/new-profile/new-profile.componen
 import { LoginComponent } from './login/login.component';
 import { SlidersComponent } from './sliders/sliders.component';
 import { VideoModalComponent } from './sliders/video-modal/video-modal.component';
+import { ProfileDeleteModalComponent } from './user-profile/profile-delete-modal/profile-delete-modal.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
-import { MaterialModule } from '@app/material.module';
+import { VideoDeleteModalComponent } from './user-profile/video-delete-modal/video-delete-modal.component';
 
 @NgModule({
   imports: [
@@ -30,13 +31,16 @@ import { MaterialModule } from '@app/material.module';
     UserProfileComponent,
     HighlightComponent,
     SlidersComponent,
-    VideoModalComponent
+    VideoModalComponent,
+    VideoDeleteModalComponent,
+    ProfileDeleteModalComponent
   ],
   exports: [
     VideoModalComponent,
   ],
   entryComponents: [
-    VideoModalComponent
+    VideoModalComponent,
+    ProfileDeleteModalComponent
   ]
 })
 export class ComponentsModule { }

@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material';
 import { Profile } from '@app/core/models/profile';
 import { AuthentificationService } from '@app/core/services/authentification/authentification.service';
 import { HomeService } from '@components/home/home.service';
+import { ProfileDeleteModalComponent } from './profile-delete-modal/profile-delete-modal.component';
 
 
 @Component({
@@ -29,7 +31,8 @@ export class UserProfileComponent implements OnInit {
     private afs: AngularFirestore,
     private homeSvc: HomeService,
     private auth: AuthentificationService,
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder,
+    public dialog: MatDialog) { }
 
   ngOnInit() {
     this.profileForm = this.formBuilder.group({
@@ -42,14 +45,22 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+  openConfirmationModal(item: Profile) {
+    const dialogRef = this.dialog.open(ProfileDeleteModalComponent, {
+      width: '600px',
+      height: '210px',
+      data: item,
+      disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe(title => {
+    });
+  }
+
   getProfiles(uid) {
     this.homeSvc.getProfiles(uid).subscribe(result => {
       this.profiles = result;
     });
-  }
-
-  deleteProfil(profilID) {
-    this.afs.collection(`users/${this.auth.user.uid}/profiles`).doc(profilID).delete();
   }
 }
 

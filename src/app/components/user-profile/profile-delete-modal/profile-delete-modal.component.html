@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>{{'DELETE_USER_PROFILE' | translate}}</h1>
+
+<div mat-dialog-content>
+  <p>{{'DELETE_USER_PROFILE_OF' | translate}}{{data.username}} ?</p>
+</div>
+
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">{{'CANCEL' | translate}}</button>
+  <button mat-button (click)="deleteProfil(data.id)">{{'DELETE' | translate}}</button>
+</div>

@@ -35,5 +35,11 @@
     "PROFILE_USERNAME": "Nom d'utilisateur",
     "ADD_PROFILE": "Ajouter un profil",
     "SNACK_SUCCESS_ADD_PROFILE": "Profil ajouté",
-    "SNACK_ERROR_ADD_PROFILE": "Une erreur est survenue durant l'ajout du profil"
+    "SNACK_ERROR_ADD_PROFILE": "Une erreur est survenue durant l'ajout du profil",
+    "CATEGORY": "Catégorie",
+    "COMEDY": "Comédie",
+    "MUSIC": "Musique",
+    "DELETE_USER_PROFILE": "Supression d'un profil",
+    "DELETE_USER_PROFILE_OF": "Voulez vous supprimer le profil de ",
+    "DELETE": "Supprimer"
 }
