@@ -24,7 +24,8 @@
                             <mat-icon>create</mat-icon>
                         </button>
 
-                        <img class="thumbnail" [src]="video.thumbnail" alt="" width="235" style="object-fit: cover;">
+                        <img class="thumbnail" [src]="video.thumbnail" alt="" width="235" style="object-fit: cover;"
+                            (click)="openPlayerModal(video.url)">
                         <div class="summary">
                             {{ video.title }}
                         </div>

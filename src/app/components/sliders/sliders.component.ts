@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material';
 import { Video } from '@app/core/models/video';
 import { TranslateService } from '@ngx-translate/core';
 import { EmbedVideoService } from 'ngx-embed-video';
+import { PlayerModalComponent } from './player-modal/player-modal.component';
 import { PlaylistModalComponent } from './playlist-modal/playlist-modal.component';
 import { Playlist } from './playlist.model';
 import { SlidersService } from './sliders.service';
@@ -69,6 +70,21 @@ export class SlidersComponent implements OnInit {
     dialogRef.afterClosed().subscribe(data => {
       if (data) {
         this.sliderSvc.editPlaylistTraductions(playlist.name, data);
+      }
+    });
+  }
+
+  openPlayerModal(url: string) {
+    console.log('url video ', url);
+    const dialogRef = this.dialog.open(PlayerModalComponent, {
+      width: '600px',
+      height: '370px',
+      data: url,
+      disableClose: false
+    });
+    dialogRef.afterClosed().subscribe(data => {
+      if (data) {
+        // this.sliderSvc.editPlaylistTraductions(playlist.name, data);
       }
     });
   }
