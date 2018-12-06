@@ -1,11 +1,12 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material';
+import { Video } from '@app/core/models/video';
 import { TranslateService } from '@ngx-translate/core';
 import { EmbedVideoService } from 'ngx-embed-video';
+import { PlaylistModalComponent } from './playlist-modal/playlist-modal.component';
 import { Playlist } from './playlist.model';
 import { SlidersService } from './sliders.service';
 import { VideoModalComponent } from './video-modal/video-modal.component';
-import { Video } from '@app/core/models/video';
 
 @Component({
   selector: 'app-sliders',
@@ -30,6 +31,7 @@ export class SlidersComponent implements OnInit {
   // TODO: voir si on peut pas faire autre chose que chainer les appels
   ngOnInit() {
     this.sliderSvc.getPlaylists().subscribe(result => {
+      console.log('playlists ? ', result);
       this.playlists = result;
       this.playlists.forEach(playlist => {
         this.sliderSvc.getVideos(playlist.name).subscribe(videos => {
@@ -40,7 +42,8 @@ export class SlidersComponent implements OnInit {
     this.iframe_html = this.embedSvc.embed(this.youtubeUrl);
   }
 
-  openModifyModal(item: Video) {
+  openVideoModifyModal(item: Video) {
+    console.log('modal video ', item);
     const dialogRef = this.dialog.open(VideoModalComponent, {
       width: '600px',
       height: '210px',
@@ -51,6 +54,21 @@ export class SlidersComponent implements OnInit {
     dialogRef.afterClosed().subscribe(title => {
       if (title) {
         this.sliderSvc.editTitleVideo(item.category, item.id, title);
+      }
+    });
+  }
+
+  openPlaylistModifyModal(playlist: Playlist) {
+    console.log('modal video ', playlist);
+    const dialogRef = this.dialog.open(PlaylistModalComponent, {
+      width: '600px',
+      height: '370px',
+      data: playlist,
+      disableClose: true
+    });
+    dialogRef.afterClosed().subscribe(data => {
+      if (data) {
+        this.sliderSvc.editPlaylistTraductions(playlist.name, data);
       }
     });
   }

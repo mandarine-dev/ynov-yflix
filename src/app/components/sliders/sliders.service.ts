@@ -3,10 +3,10 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Category } from '@app/core/models/category';
 import { Video } from '@app/core/models/video';
 import { NotifyService } from '@app/core/services/notify.service';
-import { Observable } from 'rxjs';
-import { Playlist } from './playlist.model';
 import { TranslateService } from '@ngx-translate/core';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Playlist } from './playlist.model';
 
 @Injectable({
   providedIn: 'root'
@@ -37,10 +37,22 @@ export class SlidersService {
       .catch((error) => this.notifySvc.error('SNACK_ERROR_MODIFY_VIDEO'));
   }
 
+  editPlaylistTraductions(name: string, playlist: Playlist) {
+    this.afs.collection('playlists').doc(name).update(Object.assign({}, playlist))
+      .then(() => this.notifySvc.success('SNACK_SUCCESS_MODIFY_PLAYLIST'))
+      .catch((error) => this.notifySvc.error('SNACK_ERROR_MODIFY'));
+  }
+
+  deletePlaylist(name: string) {
+    this.afs.collection('playlists').doc(name).delete()
+      .then(() => this.notifySvc.success('SNACK_SUCCESS_DELETE_PLAYLIST'))
+      .catch((error) => this.notifySvc.error('SNACK_ERROR_DELETE'));
+  }
+
   deleteVideo(playlist: string, id: string) {
     this.afs.collection(`playlists/${playlist}/videos`).doc(id).delete()
       .then(() => this.notifySvc.success('SNACK_SUCCESS_DELETE_VIDEO'))
-      .catch((error) => this.notifySvc.error('SNACK_ERROR_DELETE_VIDEO'));
+      .catch((error) => this.notifySvc.error('SNACK_ERROR_DELETE'));
   }
 
   addPlaylist(playlist: Category) {

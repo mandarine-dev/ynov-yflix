@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { ProgramsRoutingModule } from './home/home.routing';
 import { HomeNewProfileComponent } from './home/new-profile/new-profile.component';
 import { LoginComponent } from './login/login.component';
+import { PlaylistModalComponent } from './sliders/playlist-modal/playlist-modal.component';
 import { SlidersComponent } from './sliders/sliders.component';
 import { VideoModalComponent } from './sliders/video-modal/video-modal.component';
 import { ProfileDeleteModalComponent } from './user-profile/profile-delete-modal/profile-delete-modal.component';
@@ -31,13 +32,16 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     HighlightComponent,
     SlidersComponent,
     VideoModalComponent,
+    PlaylistModalComponent,
     ProfileDeleteModalComponent
   ],
   exports: [
     VideoModalComponent,
+    PlaylistModalComponent,
   ],
   entryComponents: [
     VideoModalComponent,
+    PlaylistModalComponent,
     ProfileDeleteModalComponent
   ]
 })
