@@ -1,0 +1,32 @@
+<div class="general-container">
+
+  <div class="logo"><img src="/assets/logo/yflix.png" alt="YFlix logo" style="width:150px;"></div>
+
+  <form class="form" [formGroup]="SignupForm">
+    <div class="example-container">
+      <h4>{{'CREATE_ACCOUTN' | translate}}</h4>
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Email" [(ngModel)]="userEmail" [formControl]="email" required>
+        <mat-error *ngIf="email.invalid">{{getErrorMessage() | translate}}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>{{'PASSWORD' | translate}}</mat-label>
+        <input matInput placeholder="Password" [(ngModel)]="userPassword" type="password" required [formControl]="userPasswordControl">
+        <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage() | translate}}</mat-error> -->
+        <mat-error *ngIf="userPasswordControl.errors?.minlength">{{'PASSWORD_LENGHT' | translate}}</mat-error>
+      </mat-form-field>
+
+
+      <button mat-flat-button id="btnSubmit" *ngIf="!email.invalid && !userPasswordControl.errors?.minlength && userPassword"
+        (click)="CreateUser()">{{'REGISTER'
+        | translate}}</button>
+    </div>
+  </form>
+
+  <p class="text-center">{{"ALREADY_REGISTERED" | translate}} <a href="login">{{"SIGNIN" | translate}}</a><svg class="icon">
+      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/images/icons.svg#arrow-right"></use>
+    </svg></p>
+
+</div>
