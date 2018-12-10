@@ -1,0 +1,47 @@
+<h1 mat-dialog-title>{{'MODIFY_PLAYLIST' | translate}}</h1>
+
+<div mat-dialog-content>
+  <form class="form" [formGroup]="playlistForm">
+
+    <mat-form-field appearance="outline">
+      <mat-label>{{'CATEGORY_FRENCH_TRANSLATION' | translate}}</mat-label>
+      <input [(ngModel)]="data.french_name" matInput placeholder="" formControlName="french_name">
+      <mat-icon matSuffix>code</mat-icon>
+      <mat-error *ngIf="fm.french_name.errors">
+        {{ 'VIDEO_TITLE_ERRORS' | translate }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>{{'CATEGORY_ENGLISH_TRANSLATION' | translate}}</mat-label>
+      <input [(ngModel)]="data.english_name" matInput placeholder="" formControlName="english_name">
+      <mat-icon matSuffix>code</mat-icon>
+      <mat-error *ngIf="fm.english_name.errors">
+        {{ 'VIDEO_TITLE_ERRORS' | translate }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>{{'CATEGORY_SPANISH_TRANSLATION' | translate}}</mat-label>
+      <input [(ngModel)]="data.spanish_name" matInput placeholder="" formControlName="spanish_name">
+      <mat-icon matSuffix>code</mat-icon>
+      <mat-error *ngIf="fm.spanish_name.errors">
+        {{ 'VIDEO_TITLE_ERRORS' | translate }}
+      </mat-error>
+    </mat-form-field>
+
+  </form>
+</div>
+
+<div mat-dialog-actions align="end">
+  <button mat-flat-button color="warn" (click)="deleteVideo()">
+    {{ 'DELETE_PLAYLIST' | translate }}
+  </button>
+  <span class="spacer"></span>
+  <button mat-button (click)="onCancel()">
+    {{ 'CANCEL' | translate }}
+  </button>
+  <button mat-raised-button [mat-dialog-close]="data" [disabled]="playlistForm.invalid">
+    {{ 'MODIFY' | translate }}
+  </button>
+</div>

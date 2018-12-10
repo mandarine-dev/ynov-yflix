@@ -1,15 +1,14 @@
-<h1 mat-dialog-title>{{'ADD_NEW_VIDEO' | translate}}</h1>
+<h1 mat-dialog-title>{{'MODIFY_VIDEO' | translate}}</h1>
 
 <div mat-dialog-content>
   <form class="form" [formGroup]="videoForm">
 
     <mat-form-field appearance="outline">
-      <mat-label>{{'VIDEO_URL' | translate}}</mat-label>
-      <input [(ngModel)]="data.url" matInput placeholder="https://www.youtube.com/watch?v=e-z8ktCKm_M"
-        [errorStateMatcher]="matcher" formControlName="url">
+      <mat-label>{{'VIDEO_TITLE' | translate}}</mat-label>
+      <input [(ngModel)]="data.title" matInput placeholder="" formControlName="title">
       <mat-icon matSuffix>code</mat-icon>
-      <mat-error *ngIf="fm.url.errors">
-        {{ 'VIDEO_URL_ERRORS' | translate }}
+      <mat-error *ngIf="fm.title.errors">
+        {{ 'VIDEO_TITLE_ERRORS' | translate }}
       </mat-error>
     </mat-form-field>
 
@@ -17,8 +16,14 @@
 </div>
 
 <div mat-dialog-actions align="end">
-  <button mat-button (click)="onCancel()">{{ 'VIDEO_MODAL_BTN_CANCEL' | translate }}</button>
-  <button mat-button [mat-dialog-close]="data" color="primary" [disabled]="videoForm.invalid">
-    {{ 'VIDEO_MODAL_BTN_ADD' | translate }}
+  <button mat-flat-button color="warn" (click)="deleteVideo()">
+    {{ 'DELETE_VIDEO' | translate }}
+  </button>
+  <span class="spacer"></span>
+  <button mat-button (click)="onCancel()">
+    {{ 'CANCEL' | translate }}
+  </button>
+  <button mat-raised-button [mat-dialog-close]="data.title" [disabled]="videoForm.invalid">
+    {{ 'MODIFY' | translate }}
   </button>
 </div>
