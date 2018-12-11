@@ -9,6 +9,9 @@ import { AuthentificationService } from '@app/core/services/authentification/aut
 })
 export class LoginComponent implements OnInit {
 
+  userEmail: string;
+  userPassword: string;
+
   constructor(public auth: AuthentificationService, public router: Router) { }
 
   ngOnInit() {
@@ -17,6 +20,12 @@ export class LoginComponent implements OnInit {
         this.router.navigateByUrl('/');
       }
     });
+  }
+
+  connectEmail() {
+    console.log('user : ' + this.userEmail);
+    console.log('pwd : ' + this.userPassword);
+    this.auth.EmailSignIn(this.userEmail, this.userPassword);
   }
 
 }

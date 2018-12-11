@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Profile } from '@app/core/models/profile';
 import { AuthentificationService } from '@app/core/services/authentification/authentification.service';
+import { NotifyService } from '@app/core/services/notify.service';
 
 @Component({
   selector: 'app-profile-delete-modal',
@@ -15,6 +16,7 @@ export class ProfileDeleteModalComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: Profile,
     private afs: AngularFirestore,
     private auth: AuthentificationService,
+    public notifySvc: NotifyService
   ) { }
 
   ngOnInit() {
@@ -25,7 +27,9 @@ export class ProfileDeleteModalComponent implements OnInit {
   }
 
   deleteProfil(profilID) {
-    this.afs.collection(`users/${this.auth.user.uid}/profiles`).doc(profilID).delete();
+    this.afs.collection(`users/${this.auth.user.uid}/profiles`).doc(profilID).delete()
+      .then(() => this.notifySvc.success('SNACK_SUCCESS_DELETE_PROFILE'))
+      .catch((error) => this.notifySvc.error('SNACK_ERROR_DELETE_PROFILE'));
     this.dialogRef.close();
   }
 

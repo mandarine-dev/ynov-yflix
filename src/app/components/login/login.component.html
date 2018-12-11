@@ -4,16 +4,17 @@
       <div class="field"><label for="login__username"><svg class="icon">
             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#user"></use>
           </svg><span class="hidden">Nom d'utilisateur</span></label>
-        <input id="login__username" type="text" name="username" class="form__input" placeholder="Nom d'utilisateur"
+        <input id="login__username" type="text" name="username" class="form__input" [(ngModel)]="userEmail" placeholder="Nom d'utilisateur"
           required></div>
       <div class="field"><label for="login__password"><svg class="icon">
             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#lock"></use>
-          </svg><span class="hidden">Mot de passe</span></label><input id="login__password" type="password" name="password"
-          class="form__input" placeholder="Mot de passe" required></div>
+          </svg><span class="hidden">Mot de passe</span></label><input id="login__password" [(ngModel)]="userPassword"
+          type="password" name="password" class="form__input" placeholder="Mot de passe" required></div>
       <div class="field"><input class="signin-btn" type="submit" value="Se connecter" (click)="connectEmail()"></div>
       <div class="field" (click)="auth.googleLogin()"><input class="google-btn text-center" value="Se connecter avec Google"></div>
     </form>
-    <p class="text-center">Pas de compte ? <a href="#">En créer un !</a><svg class="icon">
+    <p class="text-center"> {{"LABEL_NO_ACCOUNT" | translate}} <a href="signup">{{"LABEL_CREATE_ACCOUNT" | translate}}</a><svg
+        class="icon">
         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/images/icons.svg#arrow-right"></use>
       </svg></p>
   </div><svg xmlns="http://www.w3.org/2000/svg" class="icons">

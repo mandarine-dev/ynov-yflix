@@ -13,7 +13,7 @@
   }
 
   .user-informations{
-	  border: solid 1px grey;
+	  border: solid 1px #C0392B;
 	  border-radius:5px;
 	  width: 90%;
 	  display: flex;
@@ -30,8 +30,12 @@
 		display: flex;
 	}
 
+	#usersInformations{
+		height: 300px;
+	}
+
 	.user-profile{
-	  border: solid 1px grey;
+	  border: solid 1px #C0392B;
 	  border-radius: 5px;
 	  width: 90%;
 	  display: flex;
@@ -48,6 +52,28 @@
 	.label-left{
 		margin-left: 12px;
 		margin-top: 12px;
+	}
+
+	.open {
+		position: absolute;
+		height: 150px !important;
+		width: 150px !important;
+		background: transparent;
+		color: white;
+		visibility: hidden;
+	}
+
+	.open-delete {
+		position: absolute;
+		height: 120px !important;
+		width: 120px !important;
+		background: transparent;
+		color: white;
+		visibility: hidden;
+	}
+
+	.big-profile-picture:hover .open {
+		visibility: visible !important;
 	}
 
 	.main-container{
@@ -96,6 +122,10 @@
 			display: flex;
 			justify-content: center;
 	}
+
+	.big-profile-picture:hover img{
+		opacity: 0.2;
+	}
 	
 	.profile {
 			padding: 10px;
@@ -113,15 +143,6 @@
 			transition: .5s ease;
 	}
 	
-	.open {
-			position: absolute;
-			width: 120px;
-			height: 120px;
-			background: transparent;
-			color: white;
-			visibility: hidden;
-	}
-	
 	.profile:hover .thumb {
 			opacity: 0.2;
 	}
@@ -129,7 +150,58 @@
 	.profile:hover .open {
 			visibility: visible;
 	}
+
+	.profile:hover .open-delete {
+		visibility: visible;
+}
 	
 	.name {
 			text-align: center;
+	}	
+	
+	.profile-image {
+		height: 100px;
+		width: 100px;
+		object-fit: scale-down;
+		border-radius: 50%;
+	}
+	
+	img {
+		z-index: -1;
+		transition: .3s ease;
+	}
+	
+	.img-surrounder {
+		height: 150px;
+		width: 150px;
+		border-radius: 50%;
+		display: inline-grid;
+		cursor: pointer;
+	}
+	
+	.profile-image-container {
+		text-align: center;
+		padding-bottom: 10px;
+	}
+	
+	.spinner {
+		position: absolute;
+		height: 150px;
+		width: 150px;
+	}
+	
+	.img-surrounder:hover .open {
+		visibility: visible !important;
+	}
+
+	.img-surrounder:hover .open-delete {
+		visibility: visible !important;
+	}
+	
+	.img-surrounder:hover img {
+		opacity: 0.2;
+	}
+
+	#btnSubmit{
+		background-color: #C0392B; 
 	}

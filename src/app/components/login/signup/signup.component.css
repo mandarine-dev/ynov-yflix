@@ -1,0 +1,47 @@
+h4{
+    text-align: center;
+}
+
+.general-container{
+    width: 60%;
+    height: 500px;
+    margin: auto;
+    border:solid 1px  #C0392B;
+    border-radius: 5px;
+    margin-top: 80px;
+    padding:24px; 
+}
+
+.logo {
+    width: 150px;
+    margin: auto;
+}
+
+.example-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 12px;
+  }
+
+  .form{
+      width: 40%;
+      margin: auto;
+  }
+  
+  .example-container > * {
+    width: 100%;
+  }
+
+  #btnSubmit{
+    background-color: #C0392B; 
+}
+
+a {
+    color :  #C0392B;
+}
+
+.text-center{
+    text-align: center;
+    width: 200px;
+    margin: auto;
+}

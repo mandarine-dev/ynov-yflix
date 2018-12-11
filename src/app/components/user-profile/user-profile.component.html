@@ -5,35 +5,47 @@
 		<div class="block-title">
 			<h3>{{'USER_INFORMATIONS' | translate}}</h3>
 		</div>
-		<div class="block-content">
-			<div class="label-left">
-				<div class="profile-picture big-profile-picture">
-					<img style="width:150px;" [src]="$user.photoURL">
-					<div class="edit"><a href="#"><i class="fa fa-pencil fa-lg"></i></a></div>
+
+		<form class="form" [formGroup]="profileForm">
+
+			<div class="block-content" id="usersInformations">
+				<div class="label-left">
+					<div class="profile-picture big-profile-picture img-surrounder">
+						<button mat-fab class="open" (click)="myfile.click()">
+							<mat-icon>border_color</mat-icon>
+						</button>
+						<mat-spinner *ngIf="isUploading" class="spinner" color="accent" [diameter]="150"></mat-spinner>
+						<img style="width:150px;" [src]="$user.photoURL">
+					</div>
+					<input #myfile type="file" style="display: none;" (change)="uploadFile($event, $user)" />
+					<h2 id="userName">{{$user.displayName}}</h2>
 				</div>
-				<h2 id="userName">{{$user.displayName}}</h2>
+
+				<form class="form" [formGroup]="profileForm">
+					<div class="form form-right">
+						<h4>{{'EDIT_YOUR_EMAIL' | translate}}</h4>
+						<mat-form-field class="example-full-width">
+							<input matInput placeholder="Email" [(ngModel)]="userEmail" [formControl]="email" required>
+							<!-- {{$user.email}} -->
+							<mat-hint>{{'NEW_EMAIL' | translate}}</mat-hint>
+
+							<mat-error *ngIf="email.invalid">{{getErrorMessage() | translate}}</mat-error>
+						</mat-form-field>
+
+						<h4>{{'CULTURE_CHOICE' | translate}}</h4>
+						<mat-form-field>
+							<mat-select placeholder="Culture" [(ngModel)]="selectedValue" [formControl]="cultureValidator" required>
+								<mat-option *ngFor="let culture of cultures" [value]="culture.viewValue">
+									{{culture.viewValue}}
+								</mat-option>
+							</mat-select>
+							<mat-error *ngIf="cultureValidator.required">{{getCultureErrorMessage()}}</mat-error>
+						</mat-form-field>
+						<button mat-flat-button id="btnSubmit" *ngIf="!email.invalid && selectedValue" (click)="uploadUserInfos($user)">{{'UPDATE_INFOS' | translate}}</button>
+					</div>
+				</form>
 			</div>
-
-			<form class="form form-right" [formGroup]="profileForm">
-				<h4>{{'EDIT_YOUR_EMAIL' | translate}}</h4>
-				<mat-form-field class="example-full-width">
-					<input matInput placeholder="{{$user.email}}" formControlName="emailsValidators">
-					<mat-hint>{{'NEW_EMAIL' | translate}}</mat-hint>
-					<mat-error *ngIf="fm.emailsValidators.errors.required">
-						{{ 'REQUIRED_FIELD' | translate}}
-					</mat-error>
-				</mat-form-field>
-
-				<h4>{{'CULTURE_CHOICE' | translate}}</h4>
-				<mat-form-field>
-					<mat-select placeholder="Culture" [(ngModel)]="selectedValue" formControlName="culture">
-						<mat-option *ngFor="let culture of cultures" [value]="culture.viewValue">
-							{{culture.viewValue}}
-						</mat-option>
-					</mat-select>
-				</mat-form-field>
-			</form>
-		</div>
+		</form>
 	</div>
 
 
@@ -45,7 +57,7 @@
 			<div class="form-right">
 				<div id="profiles">
 					<div class="profile" *ngFor="let profile of profiles" (click)="openConfirmationModal(profile)">
-						<button mat-fab class="open">
+						<button mat-fab class="open-delete">
 							<mat-icon>delete_sweep</mat-icon>
 						</button>
 						<img class="thumb" [src]="profile.photoUrl">

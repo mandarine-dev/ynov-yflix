@@ -50,5 +50,22 @@
     "USER_INFORMATIONS": "Informations de l'utilisateur",
     "EDIT_YOUR_EMAIL": "Changez votre email",
     "CULTURE_CHOICE": "Choisissez votre langue",
-    "USER_PROFILES": "Profils utilisateur"
+    "USER_PROFILES": "Profils utilisateur",
+    "REQUIRED_EMAIL": "Email requis",
+    "NEW_EMAIL": "Nouvel email de l'utilisateur",
+    "UPDATE_INFOS": "Mettre les informations à jour",
+    "CREATE_ACCOUTN": "Créer un compte",
+    "REGISTER": "S'inscrire",
+    "PASSWORD": "Mot de passe",
+    "PASSWORD_LENGHT": "Votre mot de passe doit faire au moins 6 caractères",
+    "SNACK_SUCCESS_EMAIL_REGISTRATION": "Votre compte a bien été crée",
+    "SNACK_ERROR_EMAIL_REGISTRATION": "Erreur lors de la crétation du compte",
+    "ALREADY_REGISTERED": "Déjà inscrit ? ",
+    "SIGNIN": "Connectez vous !",
+    "LABEL_NO_ACCOUNT": "Pas de compte ?",
+    "LABEL_CREATE_ACCOUNT": "En créer un !",
+    "SNACK_SUCCESS_EMAIL_CONNECTION": "Connecté",
+    "SNACK_ERROR_EMAIL_CONNECTION": "Erreur lors de la connection",
+    "SNACK_SUCCESS_DELETE_PROFILE": "Profil supprimé !",
+    "SNACK_ERROR_DELETE_PROFILE": "Erreur lors de la suppression du profil !"
 }

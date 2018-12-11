@@ -45,5 +45,22 @@
     "USER_INFORMATIONS": "User's informations",
     "EDIT_YOUR_EMAIL": "Edit your email",
     "CULTURE_CHOICE": "Choose your language",
-    "USER_PROFILES": "User profiles"
+    "USER_PROFILES": "User profiles",
+    "REQUIRED_EMAIL": "Email required",
+    "NEW_EMAIL": "New user's email",
+    "UPDATE_INFOS": "Update informations",
+    "CREATE_ACCOUTN": "Create an account",
+    "REGISTER": "Register",
+    "PASSWORD": "Password",
+    "PASSWORD_LENGHT": "Your password must be at least six characters long",
+    "SNACK_SUCCESS_EMAIL_REGISTRATION": "Account created with success",
+    "SNACK_ERROR_EMAIL_REGISTRATION": "A problem occured during the account creation",
+    "ALREADY_REGISTERED": "Already registered ? ",
+    "SIGNIN": "Sign in !",
+    "LABEL_NO_ACCOUNT": "No account ?",
+    "LABEL_CREATE_ACCOUNT": "Create one !",
+    "SNACK_SUCCESS_EMAIL_CONNECTION": "Logged in",
+    "SNACK_ERROR_EMAIL_CONNECTION": "Failed to connect",
+    "SNACK_SUCCESS_DELETE_PROFILE": "Profile removed",
+    "SNACK_ERROR_DELETE_PROFILE": "A problem occured during the profile deletion !"
 }
