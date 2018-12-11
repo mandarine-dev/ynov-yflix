@@ -11,7 +11,7 @@
     "SNACK_SUCCESS_MODIFY_VIDEO": "Título del video editado!",
     "SNACK_ERROR_MODIFY_VIDEO": "Hubo un problema al cambiar el título",
     "SNACK_SUCCESS_DELETE_VIDEO": "Video correctamente eliminado",
-    "SNACK_ERROR_DELETE_VIDEO": "Hubo un problema al eliminar",
+    "SNACK_ERROR_DELETE": "Hubo un problema al eliminar",
     "VIDEO_URL": "Url",
     "VIDEO_URL_ERRORS": "Por favor ingrese una dirección válida",
     "VIDEO_TITLE_ERRORS": "El título no debe exceder los 60 caracteres",
