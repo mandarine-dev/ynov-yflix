@@ -11,7 +11,7 @@
           <button mat-fab class="open" (click)="myfile.click()">
             <mat-icon>add</mat-icon>
           </button>
-          <mat-spinner *ngIf="!isUploading" class="spinner" color="accent"></mat-spinner>
+          <mat-spinner *ngIf="isUploading" class="spinner" color="accent"></mat-spinner>
           <img class="profile-image" [src]="profile.photoUrl" />
         </div>
         <input #myfile type="file" style="display: none;" (change)="uploadFile($event)" />

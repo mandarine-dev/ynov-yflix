@@ -7,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Playlist } from './playlist.model';
+import { TestBed } from '@angular/core/testing';
 
 @Injectable({
   providedIn: 'root'
@@ -68,4 +69,27 @@ export class SlidersService {
       .catch((error) => this.notifySvc.error('SNACK_ERROR_VIDEO'));
   }
 
+  addViewToUserStatistics(categoryName: string, userId: string, profileId: string) {
+    const profileRef = this.afs.firestore.collection('users').doc(userId).collection('profiles').doc(profileId);
+    profileRef.get().then(res => {
+      let categoryAlreadyExist = false;
+      const profileData = res.data();
+      const statisticsObject = profileData.statistics;
+      // update if category already exist in nested object
+      statisticsObject.forEach(element => {
+        if (element.category === categoryName) {
+          element.views++;
+          profileRef.update({ statistics: statisticsObject });
+          categoryAlreadyExist = true;
+        }
+      });
+
+      // add new category with view init to 1
+      if (!categoryAlreadyExist) {
+        statisticsObject.push({ category: categoryName, views: 1 });
+        profileRef.update({ statistics: statisticsObject });
+      }
+    });
+
+  }
 }

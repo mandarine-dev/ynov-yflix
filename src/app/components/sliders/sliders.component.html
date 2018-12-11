@@ -24,7 +24,7 @@
                         </button>
 
                         <img class="thumbnail" [src]="video.thumbnail" alt="" width="235" style="object-fit: cover;"
-                            (click)="openPlayerModal(video.url)">
+                            (click)="openPlayerModal(video.url); addUserStatistic(playlist.name);">
                         <div class="summary">
                             {{ video.title }}
                         </div>
