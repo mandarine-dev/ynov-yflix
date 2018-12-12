@@ -25,6 +25,12 @@
     width: 90%;
 }
 
+.logo{
+    width: 150px;
+    margin: auto;
+    margin-bottom: 24px;
+}
+
 .hidden {
     border: 0;
     clip: rect(0 0 0 0);
@@ -149,7 +155,7 @@ input {
 }
 
 .login .signin-btn {
-    background-color: #ea4c88;
+    background-color: #C0392B;
     color: #eee;
     font-weight: 700;
     text-transform: uppercase;
@@ -157,11 +163,11 @@ input {
 
 .login .signin-btn:focus,
 .login .signin-btn:hover {
-    background-color: #d44179;
+    background-color: #d44334;
 }
 
 .login .google-btn {
-    background-color: #2828a7;
+    background-color: #7d7d7d;
     color: #eee;
     font-weight: 700;
     text-transform: uppercase;
@@ -169,7 +175,7 @@ input {
 
 .login .google-btn:focus,
 .login .google-btn:hover {
-    background-color: #354bb7;
+    background-color: #c3c3c3;
 }
 
 p {

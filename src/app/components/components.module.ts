@@ -16,6 +16,7 @@ import { SlidersComponent } from './sliders/sliders.component';
 import { VideoModalComponent } from './sliders/video-modal/video-modal.component';
 import { ProfileDeleteModalComponent } from './user-profile/profile-delete-modal/profile-delete-modal.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { LegalNoticeComponent } from './legal-notice/legal-notice.component';
 
 @NgModule({
   imports: [
@@ -38,7 +39,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     SignupComponent,
     PlaylistModalComponent,
     PlayerModalComponent,
-    ProfileDeleteModalComponent
+    ProfileDeleteModalComponent,
+    LegalNoticeComponent
   ],
   exports: [
     VideoModalComponent,

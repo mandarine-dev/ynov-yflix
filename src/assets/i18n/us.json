@@ -62,5 +62,6 @@
     "SNACK_SUCCESS_EMAIL_CONNECTION": "Logged in",
     "SNACK_ERROR_EMAIL_CONNECTION": "Failed to connect",
     "SNACK_SUCCESS_DELETE_PROFILE": "Profile removed",
-    "SNACK_ERROR_DELETE_PROFILE": "A problem occured during the profile deletion !"
+    "SNACK_ERROR_DELETE_PROFILE": "A problem occured during the profile deletion !",
+    "LEGAL_NOTICE": "Legal notice"
 }

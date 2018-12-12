@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeProfileComponent } from './components/home/home-profile/home-profile.component';
+import { LegalNoticeComponent } from './components/legal-notice/legal-notice.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/login/signup/signup.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent, pathMatch: 'full' },
   { path: 'profile', component: UserProfileComponent, pathMatch: 'full' },
   { path: 'signup', component: SignupComponent, pathMatch: 'full' },
+  { path: 'legalNotice', component: LegalNoticeComponent, pathMatch: 'full' },
 
 ];
 

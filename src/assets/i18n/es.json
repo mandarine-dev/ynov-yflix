@@ -62,5 +62,6 @@
     "SNACK_SUCCESS_EMAIL_CONNECTION": "Conectado",
     "SNACK_ERROR_EMAIL_CONNECTION": "Error al conectar",
     "SNACK_SUCCESS_DELETE_PROFILE": "Perfil eliminado",
-    "SNACK_ERROR_DELETE_PROFILE": "Hubo un problema al borrar el perfil !"
+    "SNACK_ERROR_DELETE_PROFILE": "Hubo un problema al borrar el perfil !",
+    "LEGAL_NOTICE": "Notas legales"
 }
