@@ -59,13 +59,13 @@ export class AuthentificationService {
         this.updateUserDataEmail(credential.user);
         this.router.navigate(['/']);
       })
-      .catch((error) => this.notifySvc.error('SNACK_ERROR_MODIFY_VIDEO'));
+      .catch((error) => this.notifySvc.error('SNACK_ERROR_EMAIL_REGISTRATION'));
   }
 
   EmailSignIn(email, password) {
     this.afAuth.auth.signInWithEmailAndPassword(email, password)
-      .then(() => this.notifySvc.success('SNACK_SUCCESS_MODIFY_VIDEO'))
-      .catch((error) => this.notifySvc.error('SNACK_ERROR_MODIFY_VIDEO'));
+      .then(() => this.notifySvc.success('SNACK_SUCCESS_EMAIL_CONNECTION'))
+      .catch((error) => this.notifySvc.error('SNACK_ERROR_EMAIL_CONNECTION'));
   }
 
   private updateUserData(user) {

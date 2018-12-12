@@ -32,8 +32,6 @@ export class SignupComponent implements OnInit {
   }
 
   CreateUser() {
-    console.log('email :' + this.userEmail);
-    console.log('pwd :' + this.userPassword);
     this.auth.EmailRegistration(this.userEmail, this.userPassword);
   }
 
