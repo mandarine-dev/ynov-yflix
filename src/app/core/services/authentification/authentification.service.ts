@@ -38,7 +38,6 @@ export class AuthentificationService {
 
   public $user: Observable<User>;
   private userSubject: BehaviorSubject<User> = new BehaviorSubject<User>(null);
-  zfzefzefz;
 
   googleLogin() {
     const provider = new auth.GoogleAuthProvider();

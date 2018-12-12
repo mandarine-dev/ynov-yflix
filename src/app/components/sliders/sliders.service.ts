@@ -4,6 +4,7 @@ import { Category } from '@app/core/models/category';
 import { Video } from '@app/core/models/video';
 import { NotifyService } from '@app/core/services/notify.service';
 import { TranslateService } from '@ngx-translate/core';
+import { orderBy, take } from 'lodash';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Playlist } from './playlist.model';
@@ -17,6 +18,43 @@ export class SlidersService {
 
   getPlaylists(): Observable<Playlist[]> {
     return this.afs.collection<Playlist>('playlists').valueChanges();
+  }
+
+  createSuggestion(userId: string, profileId: string) {
+    const profileRef = this.afs.firestore.collection('users').doc(userId).collection('profiles').doc(profileId).get();
+    const videoToAdd = [];
+
+    profileRef.then(profile => {
+      const profileObject = profile.data();
+      let statistics = profileObject['statistics'];
+      if (statistics) {
+        statistics = take(orderBy(statistics, ['views'], ['desc']), 3);
+        statistics.map(stat => {
+          this.getThreeLastVideoFromPlaylist(stat.category).subscribe(lastVideos => {
+            lastVideos.map(video => {
+              videoToAdd.push(video);
+              // tslint:disable-next-line:max-line-length
+              this.afs.firestore.collection('users').doc(userId).collection('profiles').doc(profileId).collection('playlists').doc('suggestions').set({ videos: videoToAdd });
+            });
+          });
+        });
+      }
+    });
+
+    return profileRef.then(res => res.data());
+  }
+
+  getSuggestions(userId: string, profileId: string): Observable<any> {
+    return this.afs.collection('users')
+      .doc(userId)
+      .collection('profiles')
+      .doc(profileId)
+      .collection('playlists')
+      .doc('suggestions').valueChanges();
+  }
+
+  getThreeLastVideoFromPlaylist(category: string): Observable<Video[]> {
+    return this.afs.collection<Video>(`playlists/${category}/videos`, ref => ref.orderBy('addedDate', 'desc').limit(3)).valueChanges();
   }
 
   getVideos(playlist: string): Observable<Video[]> {
@@ -68,4 +106,29 @@ export class SlidersService {
       .catch((error) => this.notifySvc.error('SNACK_ERROR_VIDEO'));
   }
 
+  addViewToUserStatistics(categoryName: string, userId: string, profileId: string) {
+    const profileRef = this.afs.firestore.collection('users').doc(userId).collection('profiles').doc(profileId);
+    profileRef.get().then(res => {
+      let categoryAlreadyExist = false;
+      const profileData = res.data();
+      const statisticsObject = profileData.statistics;
+      // update if category already exist in nested object
+      if (statisticsObject) {
+        statisticsObject.forEach(element => {
+          if (element.category === categoryName) {
+            element.views++;
+            profileRef.update({ statistics: statisticsObject });
+            categoryAlreadyExist = true;
+          }
+        });
+        // add new category with view init to 1
+        if (!categoryAlreadyExist) {
+          statisticsObject.push({ category: categoryName, views: 1 });
+          profileRef.update({ statistics: statisticsObject });
+        }
+      } else {
+        profileRef.update({ statistics: [{ category: categoryName, views: 1 }] });
+      }
+    });
+  }
 }
