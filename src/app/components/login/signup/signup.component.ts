@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthentificationService } from '@app/core/services/authentification/authentification.service';
 import { environment } from '@env/environment';
-import { PaymentService } from './payment.service';
+
+declare var StripeCheckout: any;
 
 @Component({
   selector: 'app-signup',
@@ -25,7 +26,7 @@ export class SignupComponent implements OnInit {
     { value: 'formule-2', viewValue: 'Formule 4 utilisateurs', amount: 999 },
   ];
 
-  constructor(private auth: AuthentificationService, private formBuilder: FormBuilder, public pmt: PaymentService) { }
+  constructor(private auth: AuthentificationService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.signupForm = this.formBuilder.group({
