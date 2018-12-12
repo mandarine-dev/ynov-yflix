@@ -6,7 +6,6 @@ h4{
     width: 60%;
     height: 500px;
     margin: auto;
-    border:solid 1px  #C0392B;
     border-radius: 5px;
     margin-top: 80px;
     padding:24px; 
@@ -44,4 +43,13 @@ a {
     text-align: center;
     width: 200px;
     margin: auto;
+}
+
+.icon{
+    width: 25px;
+    height: 25px;
+    display: inline-flex;
+}
+.mat-form-field-infix{
+    display: inline-flex;
 }

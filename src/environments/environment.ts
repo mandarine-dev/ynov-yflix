@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+
   firebase: {
     apiKey: 'AIzaSyCpec_zRWlaKBJRvBF0LIXmGjzeC27YWts',
     authDomain: 'ynov-yflix.firebaseapp.com',

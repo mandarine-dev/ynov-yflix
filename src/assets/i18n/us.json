@@ -12,7 +12,7 @@
     "SNACK_SUCCESS_MODIFY_VIDEO": "Title of the video updated !",
     "SNACK_ERROR_MODIFY_VIDEO": "A problem occured during the loading of the video",
     "SNACK_SUCCESS_DELETE_VIDEO": "Video deleted successfuly",
-    "SNACK_ERROR_DELETE": "A problem occured during the supression",
+    "SNACK_ERROR_DELETE_VIDEO": "A problem occured during the supression",
     "VIDEO_URL": "Url",
     "VIDEO_URL_ERRORS": "Please use a correct url video",
     "VIDEO_TITLE_ERRORS": "Title maximum lenght is 60 characters",
@@ -63,5 +63,6 @@
     "SNACK_SUCCESS_EMAIL_CONNECTION": "Logged in",
     "SNACK_ERROR_EMAIL_CONNECTION": "Failed to connect",
     "SNACK_SUCCESS_DELETE_PROFILE": "Profile removed",
-    "SNACK_ERROR_DELETE_PROFILE": "A problem occured during the profile deletion !"
+    "SNACK_ERROR_DELETE_PROFILE": "A problem occured during the profile deletion !",
+    "LEGAL_NOTICE": "Legal notice"
 }

@@ -68,5 +68,6 @@
     "SNACK_SUCCESS_EMAIL_CONNECTION": "Connecté",
     "SNACK_ERROR_EMAIL_CONNECTION": "Erreur lors de la connection",
     "SNACK_SUCCESS_DELETE_PROFILE": "Profil supprimé !",
-    "SNACK_ERROR_DELETE_PROFILE": "Erreur lors de la suppression du profil !"
+    "SNACK_ERROR_DELETE_PROFILE": "Erreur lors de la suppression du profil !",
+    "LEGAL_NOTICE": "Mentions légales"
 }
