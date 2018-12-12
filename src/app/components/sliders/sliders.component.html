@@ -16,6 +16,20 @@
 
             <div class="container" #tilesContainer>
 
+                <!-- sugestions -->
+                <!-- <li *ngFor="let video of playlist.videos" class="item">
+
+                    <button mat-icon-button class="item-modify" (click)="openVideoModifyModal(video)">
+                        <mat-icon>create</mat-icon>
+                    </button>
+
+                    <img class="thumbnail" [src]="video.thumbnail" alt="" width="235" style="object-fit: cover;"
+                        (click)="openPlayerModal(video.url, playlist.name);">
+                    <div class="summary">
+                        {{ video.title }}
+                    </div>
+                </li> -->
+
                 <ul class="slider">
                     <li *ngFor="let video of playlist.videos" class="item">
 
@@ -24,7 +38,7 @@
                         </button>
 
                         <img class="thumbnail" [src]="video.thumbnail" alt="" width="235" style="object-fit: cover;"
-                            (click)="openPlayerModal(video.url); addUserStatistic(playlist.name);">
+                            (click)="openPlayerModal(video.url, playlist.name);">
                         <div class="summary">
                             {{ video.title }}
                         </div>

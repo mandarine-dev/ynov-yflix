@@ -4,10 +4,10 @@ import { Category } from '@app/core/models/category';
 import { Video } from '@app/core/models/video';
 import { NotifyService } from '@app/core/services/notify.service';
 import { TranslateService } from '@ngx-translate/core';
+import { orderBy, take } from 'lodash';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Playlist } from './playlist.model';
-import { TestBed } from '@angular/core/testing';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +18,43 @@ export class SlidersService {
 
   getPlaylists(): Observable<Playlist[]> {
     return this.afs.collection<Playlist>('playlists').valueChanges();
+  }
+
+  getSuggestionsPlaylist(userId: string, profileId: string) {
+    const profileRef = this.afs.collection('users').doc(userId).collection('profiles').doc(profileId);
+    // tslint:disable-next-line:max-line-length
+    const playlistRef = this.afs.collection<Playlist>('users').doc(userId).collection('profiles').doc(profileId).collection('playlist');
+
+    profileRef.valueChanges().subscribe(profile => {
+      playlistRef.valueChanges().subscribe(playlist => {
+        console.log('profile : ', profile);
+        console.log('playlist: ', playlist);
+        let statistics = profile['statistics'];
+        if (statistics) {
+          console.log('statistics', statistics);
+
+          if (playlist.length <= 0) {
+            playlistRef.add({});
+          }
+
+          statistics = take(orderBy(statistics, ['views'], ['desc']), 3);
+
+          statistics.forEach(stat => {
+            this.getThreeLastVideoFromPlaylist(stat.category).subscribe(lastVideos => {
+              lastVideos.forEach(video => {
+                console.log('video', video);
+                playlistRef.add({ video });
+              });
+            });
+          });
+          return;
+        }
+      });
+    });
+  }
+
+  getThreeLastVideoFromPlaylist(category: string): Observable<Video[]> {
+    return this.afs.collection<Video>(`playlists/${category}/videos`, ref => ref.orderBy('addedDate', 'desc').limit(3)).valueChanges();
   }
 
   getVideos(playlist: string): Observable<Video[]> {
@@ -76,20 +113,22 @@ export class SlidersService {
       const profileData = res.data();
       const statisticsObject = profileData.statistics;
       // update if category already exist in nested object
-      statisticsObject.forEach(element => {
-        if (element.category === categoryName) {
-          element.views++;
+      if (statisticsObject) {
+        statisticsObject.forEach(element => {
+          if (element.category === categoryName) {
+            element.views++;
+            profileRef.update({ statistics: statisticsObject });
+            categoryAlreadyExist = true;
+          }
+        });
+        // add new category with view init to 1
+        if (!categoryAlreadyExist) {
+          statisticsObject.push({ category: categoryName, views: 1 });
           profileRef.update({ statistics: statisticsObject });
-          categoryAlreadyExist = true;
         }
-      });
-
-      // add new category with view init to 1
-      if (!categoryAlreadyExist) {
-        statisticsObject.push({ category: categoryName, views: 1 });
-        profileRef.update({ statistics: statisticsObject });
+      } else {
+        profileRef.update({ statistics: [{ category: categoryName, views: 1 }] });
       }
     });
-
   }
 }

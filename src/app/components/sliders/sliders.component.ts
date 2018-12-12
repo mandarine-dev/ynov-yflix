@@ -1,15 +1,14 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material';
+import { ActivatedRoute } from '@angular/router';
 import { Video } from '@app/core/models/video';
+import { AuthentificationService } from '@app/core/services/authentification/authentification.service';
 import { TranslateService } from '@ngx-translate/core';
-import { EmbedVideoService } from 'ngx-embed-video';
 import { PlayerModalComponent } from './player-modal/player-modal.component';
 import { PlaylistModalComponent } from './playlist-modal/playlist-modal.component';
 import { Playlist } from './playlist.model';
 import { SlidersService } from './sliders.service';
 import { VideoModalComponent } from './video-modal/video-modal.component';
-import { AuthentificationService } from '@app/core/services/authentification/authentification.service';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-sliders',
@@ -21,6 +20,7 @@ export class SlidersComponent implements OnInit {
   @ViewChild('tilesContainer', { read: ElementRef }) public widgetsContent: ElementRef<any>;
 
   playlists: Playlist[];
+  suggestions: Playlist;
 
   constructor(
     private sliderSvc: SlidersService,
@@ -39,6 +39,11 @@ export class SlidersComponent implements OnInit {
         });
       });
     });
+    this.initSuggestionsPlaylist();
+  }
+
+  initSuggestionsPlaylist() {
+    // console.log(this.sliderSvc.getSuggestionsPlaylist(this.authSvc.user.uid, this.route.snapshot.params['id']));
   }
 
   openVideoModifyModal(item: Video) {
@@ -70,19 +75,18 @@ export class SlidersComponent implements OnInit {
     });
   }
 
-  openPlayerModal(url: string) {
+  openPlayerModal(url: string, category: string) {
     this.dialog.open(PlayerModalComponent, {
       width: '600px',
       height: '370px',
       data: url,
       disableClose: false
     });
+    this.addUserStatistic(category);
   }
 
   addUserStatistic(category) {
-    // this.authSvc.user
     this.sliderSvc.addViewToUserStatistics(category, this.authSvc.user.uid, this.route.snapshot.params['id']);
-    console.log('category', category);
   }
 
   public scrollRight(): void {
