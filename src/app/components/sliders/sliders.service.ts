@@ -20,37 +20,37 @@ export class SlidersService {
     return this.afs.collection<Playlist>('playlists').valueChanges();
   }
 
-  getSuggestionsPlaylist(userId: string, profileId: string) {
-    const profileRef = this.afs.collection('users').doc(userId).collection('profiles').doc(profileId);
-    // tslint:disable-next-line:max-line-length
-    const playlistRef = this.afs.collection<Playlist>('users').doc(userId).collection('profiles').doc(profileId).collection('playlist');
+  createSuggestion(userId: string, profileId: string) {
+    const profileRef = this.afs.firestore.collection('users').doc(userId).collection('profiles').doc(profileId).get();
+    const videoToAdd = [];
 
-    profileRef.valueChanges().subscribe(profile => {
-      playlistRef.valueChanges().subscribe(playlist => {
-        console.log('profile : ', profile);
-        console.log('playlist: ', playlist);
-        let statistics = profile['statistics'];
-        if (statistics) {
-          console.log('statistics', statistics);
-
-          if (playlist.length <= 0) {
-            playlistRef.add({});
-          }
-
-          statistics = take(orderBy(statistics, ['views'], ['desc']), 3);
-
-          statistics.forEach(stat => {
-            this.getThreeLastVideoFromPlaylist(stat.category).subscribe(lastVideos => {
-              lastVideos.forEach(video => {
-                console.log('video', video);
-                playlistRef.add({ video });
-              });
+    profileRef.then(profile => {
+      const profileObject = profile.data();
+      let statistics = profileObject['statistics'];
+      if (statistics) {
+        statistics = take(orderBy(statistics, ['views'], ['desc']), 3);
+        statistics.map(stat => {
+          this.getThreeLastVideoFromPlaylist(stat.category).subscribe(lastVideos => {
+            lastVideos.map(video => {
+              videoToAdd.push(video);
+              // tslint:disable-next-line:max-line-length
+              this.afs.firestore.collection('users').doc(userId).collection('profiles').doc(profileId).collection('playlists').doc('suggestions').set({ videos: videoToAdd });
             });
           });
-          return;
-        }
-      });
+        });
+      }
     });
+
+    return profileRef.then(res => res.data());
+  }
+
+  getSuggestions(userId: string, profileId: string): Observable<any> {
+    return this.afs.collection('users')
+      .doc(userId)
+      .collection('profiles')
+      .doc(profileId)
+      .collection('playlists')
+      .doc('suggestions').valueChanges();
   }
 
   getThreeLastVideoFromPlaylist(category: string): Observable<Video[]> {

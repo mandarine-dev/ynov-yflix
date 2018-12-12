@@ -9,6 +9,7 @@ import { PlaylistModalComponent } from './playlist-modal/playlist-modal.componen
 import { Playlist } from './playlist.model';
 import { SlidersService } from './sliders.service';
 import { VideoModalComponent } from './video-modal/video-modal.component';
+import { HelperService } from '@app/core/services/helper.service';
 
 @Component({
   selector: 'app-sliders',
@@ -20,14 +21,15 @@ export class SlidersComponent implements OnInit {
   @ViewChild('tilesContainer', { read: ElementRef }) public widgetsContent: ElementRef<any>;
 
   playlists: Playlist[];
-  suggestions: Playlist;
+  suggestions: any;
 
   constructor(
     private sliderSvc: SlidersService,
     public dialog: MatDialog,
     public translateSvc: TranslateService,
     private authSvc: AuthentificationService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private helperSvc: HelperService
   ) { }
 
   ngOnInit() {
@@ -43,7 +45,11 @@ export class SlidersComponent implements OnInit {
   }
 
   initSuggestionsPlaylist() {
-    // console.log(this.sliderSvc.getSuggestionsPlaylist(this.authSvc.user.uid, this.route.snapshot.params['id']));
+    this.sliderSvc.createSuggestion(this.authSvc.user.uid, this.route.snapshot.params['id']);
+    this.sliderSvc.getSuggestions(this.authSvc.user.uid, this.route.snapshot.params['id']).subscribe(result => {
+      this.suggestions = result;
+      console.log('result', result);
+    });
   }
 
   openVideoModifyModal(item: Video) {
@@ -89,11 +95,12 @@ export class SlidersComponent implements OnInit {
     this.sliderSvc.addViewToUserStatistics(category, this.authSvc.user.uid, this.route.snapshot.params['id']);
   }
 
-  public scrollRight(): void {
+  public scrollRight(widget): void {
+    console.log('widget', widget);
     this.widgetsContent.nativeElement.scrollTo({ left: (this.widgetsContent.nativeElement.scrollLeft + 810), behavior: 'smooth' });
   }
 
-  public scrollLeft(): void {
+  public scrollLeft(widget): void {
     this.widgetsContent.nativeElement.scrollTo({ left: (this.widgetsContent.nativeElement.scrollLeft - 810), behavior: 'smooth' });
   }
 
