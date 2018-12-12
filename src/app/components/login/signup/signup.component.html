@@ -2,7 +2,7 @@
 
   <div class="logo"><img src="/assets/logo/yflix.png" alt="YFlix logo" style="width:150px;"></div>
 
-  <form class="form" [formGroup]="SignupForm">
+  <form class="form" [formGroup]="signupForm">
     <div class="example-container">
       <h4>{{'CREATE_ACCOUTN' | translate}}</h4>
       <mat-form-field class="example-full-width" appearance="outline">
@@ -13,14 +13,20 @@
 
       <mat-form-field class="example-full-width" appearance="outline">
         <mat-label>{{'PASSWORD' | translate}}</mat-label>
-        <input matInput placeholder="Password" [(ngModel)]="userPassword" type="password" required [formControl]="userPasswordControl">
+        <input matInput placeholder="Password" [(ngModel)]="userPassword" type="password" required [formControl]="password">
         <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage() | translate}}</mat-error> -->
-        <mat-error *ngIf="userPasswordControl.errors?.minlength">{{'PASSWORD_LENGHT' | translate}}</mat-error>
+        <mat-error *ngIf="password.errors?.minlength">{{'PASSWORD_LENGHT' | translate}}</mat-error>
       </mat-form-field>
 
+      <mat-form-field appearance="outline">
+        <mat-select placeholder="Formule">
+          <mat-option *ngFor="let formule of formules" [value]="formule.value" (onSelectionChange)="updateAmount(formule)">
+            {{formule.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
-      <button mat-flat-button id="btnSubmit" *ngIf="!email.invalid && !userPasswordControl.errors?.minlength && userPassword"
-        (click)="CreateUser()">{{'REGISTER'
+      <button mat-flat-button id="btnSubmit" [disabled]="email.invalid || password.invalid" (click)="openHandler()">{{'REGISTER'
         | translate}}</button>
     </div>
   </form>

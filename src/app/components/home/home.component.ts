@@ -15,7 +15,6 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.profileId = this.route.snapshot.params['id'];
     if (this.profileId) {
-      console.log('Welcome !', this.profileId);
     }
   }
 

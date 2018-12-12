@@ -4,7 +4,6 @@
 
 export const environment = {
   production: false,
-
   firebase: {
     apiKey: 'AIzaSyCpec_zRWlaKBJRvBF0LIXmGjzeC27YWts',
     authDomain: 'ynov-yflix.firebaseapp.com',
@@ -12,7 +11,8 @@ export const environment = {
     projectId: 'ynov-yflix',
     storageBucket: 'ynov-yflix.appspot.com',
     messagingSenderId: '56207161340'
-  }
+  },
+  stripeKey: 'pk_test_lQh1IFzTEIQiJuc7l1K0r21G'
 };
 
 /*

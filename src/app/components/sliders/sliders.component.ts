@@ -48,7 +48,6 @@ export class SlidersComponent implements OnInit {
     this.sliderSvc.createSuggestion(this.authSvc.user.uid, this.route.snapshot.params['id']);
     this.sliderSvc.getSuggestions(this.authSvc.user.uid, this.route.snapshot.params['id']).subscribe(result => {
       this.suggestions = result;
-      console.log('result', result);
     });
   }
 
@@ -96,7 +95,6 @@ export class SlidersComponent implements OnInit {
   }
 
   public scrollRight(widget): void {
-    console.log('widget', widget);
     this.widgetsContent.nativeElement.scrollTo({ left: (this.widgetsContent.nativeElement.scrollLeft + 810), behavior: 'smooth' });
   }
 

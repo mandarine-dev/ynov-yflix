@@ -119,9 +119,6 @@ export class UserProfileComponent implements OnInit {
     }
 
     this.auth.updateUserInformations(user, this.userEmail, this.cultureValue);
-
-    console.log('new email: ' + this.userEmail);
-    console.log('new culture value: ' + this.cultureValue);
   }
 
   getProfiles(uid) {

@@ -1,6 +1,6 @@
 <div *ngIf="playlists" id="sliders">
 
-    <div id="playlist">
+    <div *ngIf="suggestions" id="playlist">
 
         <div class="slider-title-inline">
             <p class="playlist-title">{{ 'SUGGESTIONS' | translate }}</p>
@@ -22,6 +22,15 @@
                     </div>
                 </li>
             </ul>
+
+            <div class="controls">
+                <button class="prev" (click)="scrollLeft(tilesContainer)" style="position: absolute; left: 0px;">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="next" (click)="scrollRight(tilesContainer)" style="position: absolute; right: 0px;">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
         </div>
 
     </div>

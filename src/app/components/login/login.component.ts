@@ -23,8 +23,6 @@ export class LoginComponent implements OnInit {
   }
 
   connectEmail() {
-    console.log('user : ' + this.userEmail);
-    console.log('pwd : ' + this.userPassword);
     this.auth.EmailSignIn(this.userEmail, this.userPassword);
   }
 
