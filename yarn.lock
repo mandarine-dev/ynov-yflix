@@ -2913,6 +2913,13 @@ firebase@^5.5.6:
     "@firebase/polyfill" "0.3.3"
     "@firebase/storage" "0.2.4"
 
+flag-icon-css@^3.2.1:
+  version "3.4.5"
+  resolved "https://registry.yarnpkg.com/flag-icon-css/-/flag-icon-css-3.4.5.tgz#584d618563034e69cb9a5b7a7c8477ec8c029a49"
+  integrity sha512-COo/PuJY/JddBLkdi7jL3gWF0z/hcvBRA4kfMXUjLeLglFf5IsyAzKZuXaXfCubVrkraVizmEp7Bn05upTXofA==
+  dependencies:
+    opencollective-postinstall "2.0.2"
+
 flush-write-stream@^1.0.0:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/flush-write-stream/-/flush-write-stream-1.0.3.tgz#c5d586ef38af6097650b49bc41b55fabb19f35bd"
@@ -4438,6 +4445,11 @@ lodash@^4.0.0, lodash@^4.17.10, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.17.5, 
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
   integrity sha512-cQKh8igo5QUhZ7lg38DYWAxMvjSAKG0A8wGSVimP07SIUEK2UO+arSRKbRZWtelMtN5V0Hkwh5ryOto/SshYIg==
 
+lodash@^4.17.11:
+  version "4.17.15"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
+  integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
+
 log4js@^3.0.0:
   version "3.0.6"
   resolved "https://registry.yarnpkg.com/log4js/-/log4js-3.0.6.tgz#e6caced94967eeeb9ce399f9f8682a4b2b28c8ff"
@@ -4751,9 +4763,9 @@ mississippi@^2.0.0:
     through2 "^2.0.0"
 
 mixin-deep@^1.2.0:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/mixin-deep/-/mixin-deep-1.3.1.tgz#a49e7268dce1a0d9698e45326c5626df3543d0fe"
-  integrity sha512-8ZItLHeEgaqEvd5lYBXfm4EZSFCX29Jb9K+lAHhDKzReKBQKj3R+7NOF6tjqYi9t4oI8VUfaWITJQm86wnXGNQ==
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/mixin-deep/-/mixin-deep-1.3.2.tgz#1120b43dc359a785dce65b55b82e257ccf479566"
+  integrity sha512-WRoDn//mXBiJ1H40rqa3vH0toePwSsGb45iInWlTySa+Uu4k3tYUSxa2v1KqAiLtvlrSzaExqS1gtk96A9zvEA==
   dependencies:
     for-in "^1.0.2"
     is-extendable "^1.0.1"
@@ -4853,6 +4865,13 @@ ngx-embed-video@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/ngx-embed-video/-/ngx-embed-video-1.0.2.tgz#ef3749fe7cc842b5e97173f5be966d1eb4218f12"
   integrity sha512-mJbYKtvPen3/J4rAoHf35ZPcJEVDIr+FFbYPZqbjCd1NjcK3KXLzce+5eFRGXmxbPe8hn331yxIocAxwls5WUw==
+
+ngx-flag-icon-css@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/ngx-flag-icon-css/-/ngx-flag-icon-css-1.0.1.tgz#e8b5436a5ad03012391c55f04dfe5aba81f57dc6"
+  integrity sha512-7pd1VuX1jIO0whL3uZOdLksffpav8QAFyJRlaZN2Vc8p/athSn7Fprr5i0xR2V9XsUdD2pI7e5ZgB3IGCFRLsA==
+  dependencies:
+    tslib "^1.9.0"
 
 nice-try@^1.0.4:
   version "1.0.5"
@@ -5167,6 +5186,11 @@ once@1.x, once@^1.3.0, once@^1.3.1, once@^1.3.3, once@^1.4.0:
   integrity sha1-WDsap3WWHUsROsF9nFC6753Xa9E=
   dependencies:
     wrappy "1"
+
+opencollective-postinstall@2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/opencollective-postinstall/-/opencollective-postinstall-2.0.2.tgz#5657f1bede69b6e33a45939b061eb53d3c6c3a89"
+  integrity sha512-pVOEP16TrAO2/fjej1IdOyupJY8KDUM1CvsaScRbw6oddvpQoOfGk4ywha0HKKVAD6RkW4x6Q+tNBwhf3Bgpuw==
 
 opn@^5.1.0, opn@^5.3.0:
   version "5.4.0"
